@@ -3,13 +3,13 @@
     background-color: #ffffff !important;
     color: #000000 !important;
     width: 100% !important;
-    padding: 60px 4% !important;
+    padding: 70px 4% !important;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   
   .ah-comparison-container {
-    max-width: 1400px;
+    max-width: 1350px;
     margin: 0 auto;
     width: 100%;
   }
@@ -17,7 +17,7 @@
   .ah-comparison-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 60px;
     align-items: center;
   }
 
@@ -30,21 +30,22 @@
 
   /* Left Side Styling */
   .ah-comparison-left h2 {
-    font-size: clamp(32px, 4.5vw, 54px) !important;
+    font-size: clamp(34px, 4.8vw, 52px) !important;
     font-weight: 900 !important;
     line-height: 1.05 !important;
     text-transform: uppercase !important;
     letter-spacing: -0.03em !important;
-    margin: 0 0 20px 0 !important;
+    margin: 0 0 22px 0 !important;
     color: #000000 !important;
   }
 
   .ah-comparison-left p {
     font-size: 16px !important;
-    line-height: 1.6 !important;
+    line-height: 1.65 !important;
     color: #444444 !important;
-    margin-bottom: 32px !important;
+    margin-bottom: 35px !important;
     font-weight: 400 !important;
+    max-width: 540px;
   }
 
   .ah-bullet-list {
@@ -65,28 +66,30 @@
 
   .ah-bullet-icon {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #333333;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #222222;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1px;
-    color: #333333;
+    margin-top: 2px;
+    color: #222222;
   }
 
   .ah-bullet-icon svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
-  /* Right Side Table Styling */
+  /* Right Side Table Styling (Exact Upload 1 Look & Feel) */
   .ah-table-container {
     width: 100%;
-    border: 2px solid #000000;
+    border: 1px solid #d0d0d0;
     background-color: #ffffff;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
   }
 
   .ah-table {
@@ -97,42 +100,43 @@
 
   .ah-table th {
     padding: 22px 16px;
-    font-weight: 900 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    font-weight: 700 !important;
     font-size: 15px;
     vertical-align: middle;
-    border-bottom: 2px solid #000000;
+    border-bottom: 1px solid #d0d0d0;
+    letter-spacing: -0.01em;
   }
 
   .ah-table th.th-feature {
-    width: 44%;
+    width: 42%;
     text-align: left;
-    color: #000000;
-    background-color: #ffffff;
-    padding-left: 24px;
+    color: #333333;
+    background-color: #fcfcfc;
+    padding-left: 22px;
+    border-right: 1px solid #d0d0d0;
   }
 
   .ah-table th.th-brand {
-    width: 31%;
+    width: 33%;
     background-color: #000000;
     color: #ffffff;
     text-align: center;
-    font-size: 16px;
+    font-weight: 600 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .ah-table th.th-others {
     width: 25%;
-    background-color: #f4f4f4;
-    color: #333333;
+    background-color: #f7f7f7;
+    color: #555555;
     text-align: center;
   }
 
   .ah-table td {
     padding: 20px 16px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e2e2e2;
     vertical-align: middle;
-    font-size: 15px;
+    font-size: 14.5px;
   }
 
   .ah-table tr:last-child td {
@@ -140,36 +144,39 @@
   }
 
   .ah-table td.td-feature {
-    font-weight: 600;
-    color: #111111;
-    padding-left: 24px;
-    line-height: 1.35;
+    font-weight: 500;
+    color: #222222;
+    padding-left: 22px;
+    line-height: 1.4;
+    border-right: 1px solid #e2e2e2;
+    background-color: #fcfcfc;
   }
 
   .ah-table td.td-brand {
     background-color: #000000;
     color: #ffffff;
     text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .ah-table td.td-others {
     background-color: #ffffff;
-    color: #666666;
+    color: #777777;
     text-align: center;
   }
 
   /* Status Icons */
   .mark-check {
     color: #2e7d32;
-    font-size: 22px;
-    font-weight: 900;
+    font-size: 20px;
+    font-weight: 800;
     display: inline-block;
   }
 
   .mark-cross {
     color: #d32f2f;
-    font-size: 20px;
-    font-weight: 900;
+    font-size: 18px;
+    font-weight: 800;
     display: inline-block;
   }
 </style>
@@ -178,7 +185,7 @@
   <div class="ah-comparison-container">
     <div class="ah-comparison-grid">
       
-      <!-- Left Column: Heading & 4 ASSET HOUSE Bullet Points -->
+      <!-- Left Column -->
       <div class="ah-comparison-left">
         <h2>{{ section.settings.heading }}</h2>
         <p>{{ section.settings.subtext }}</p>
@@ -199,12 +206,12 @@
         </div>
       </div>
 
-      <!-- Right Column: Scaled Table -->
+      <!-- Right Column: Structured Table -->
       <div class="ah-table-container">
         <table class="ah-table">
           <thead>
             <tr>
-              <th class="th-feature">Features</th>
+              <th class="th-feature"></th>
               <th class="th-brand">{{ section.settings.brand_column_title }}</th>
               <th class="th-others">{{ section.settings.competitor_column_title }}</th>
             </tr>
@@ -255,7 +262,7 @@
       "type": "textarea",
       "id": "subtext",
       "label": "Description",
-      "default": "Why ambitious founders choose Asset House for premium business resources. Compare our clean formatting, ready-to-use business templates, and instant download access."
+      "default": "Why thousands of ambitious business owners choose Asset House. Compare our professional quality, comprehensive digital templates, instant downloads, and commitment to practical execution that makes growing your enterprise seamless."
     },
     {
       "type": "text",
@@ -279,7 +286,7 @@
           "type": "text",
           "id": "text",
           "label": "Bullet Text",
-          "default": "Instant digital access to editable planners & spreadsheets."
+          "default": "Instant access to professionally designed business templates & toolkits."
         }
       ]
     },
@@ -296,7 +303,7 @@
         {
           "type": "select",
           "id": "brand_status",
-          "label": "Asset House Icon/Value Type",
+          "label": "Asset House Icon Type",
           "options": [
             { "value": "check", "label": "Green Checkmark (✓)" },
             { "value": "text", "label": "Custom Text" }
@@ -306,13 +313,13 @@
         {
           "type": "text",
           "id": "brand_value",
-          "label": "Asset House Text (if Custom Text selected)",
+          "label": "Asset House Custom Text",
           "default": "✓"
         },
         {
           "type": "select",
           "id": "competitor_status",
-          "label": "Others Icon/Value Type",
+          "label": "Others Icon Type",
           "options": [
             { "value": "cross", "label": "Red Cross (✕)" },
             { "value": "text", "label": "Custom Text" }
@@ -322,7 +329,7 @@
         {
           "type": "text",
           "id": "competitor_value",
-          "label": "Others Text (if Custom Text selected)",
+          "label": "Others Custom Text",
           "default": "✕"
         }
       ]
@@ -334,19 +341,19 @@
       "blocks": [
         {
           "type": "bullet",
-          "settings": { "text": "Instant access to clean, fully editable business templates & spreadsheets." }
+          "settings": { "text": "Instant secure digital file delivery immediately following checkout." }
         },
         {
           "type": "bullet",
-          "settings": { "text": "Designed for clarity, productivity, and immediate business execution." }
+          "settings": { "text": "Clean, fully editable spreadsheets, planners, and operational toolkits." }
         },
         {
           "type": "bullet",
-          "settings": { "text": "One-time payment with lifetime access and zero hidden subscription fees." }
+          "settings": { "text": "Designed for immediate business execution with zero fluff or filler." }
         },
         {
           "type": "bullet",
-          "settings": { "text": "Comprehensive beginner-to-advanced digital guides and resource bundles." }
+          "settings": { "text": "Lifetime access and free updates with a single one-time payment." }
         },
         {
           "type": "row",
