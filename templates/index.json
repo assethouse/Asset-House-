@@ -244,7 +244,7 @@
                 "case": "none",
                 "wrap": "pretty",
                 "text_color": "{{ settings.color_palette.background }}",
-                "background": false,
+                "background": true,
                 "background_color": "#00000026",
                 "corner_radius": 0,
                 "padding-block-start": 4,
