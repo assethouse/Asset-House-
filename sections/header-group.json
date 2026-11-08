@@ -36,11 +36,11 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "background_color": "#ff0000",
+        "background_color": "#006EFF",
         "divider_width": 1,
-        "divider_color": "{{ settings.color_palette.foreground }}",
-        "padding-block-start": 15,
-        "padding-block-end": 15
+        "divider_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 23,
+        "padding-block-end": 23
       }
     },
     "header_section": {
