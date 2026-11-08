@@ -1890,10 +1890,3 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     visibility: visible !important;
   }
 
-  /* Force search icon / bar to the right side */
-  .header__column--right, header-actions, .header-actions {
-    display: flex !important;
-    justify-content: flex-end !important;
-    margin-left: auto !important;
-  }
-}
