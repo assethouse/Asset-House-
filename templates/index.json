@@ -308,10 +308,119 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "asset_house_comparison_VebeHz": {
+      "type": "asset-house-comparison",
+      "blocks": {
+        "bullet_RdmfgL": {
+          "type": "bullet",
+          "settings": {
+            "text": "Instant access to clean, fully editable business templates & spreadsheets."
+          }
+        },
+        "bullet_dHRBEE": {
+          "type": "bullet",
+          "settings": {
+            "text": "Designed for clarity, productivity, and immediate business execution."
+          }
+        },
+        "bullet_qfAFjF": {
+          "type": "bullet",
+          "settings": {
+            "text": "One-time payment with lifetime access and zero hidden subscription fees."
+          }
+        },
+        "bullet_qJXYLU": {
+          "type": "bullet",
+          "settings": {
+            "text": "Comprehensive beginner-to-advanced digital guides and resource bundles."
+          }
+        },
+        "row_4QgDdg": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Instant digital file access",
+            "brand_status": "check",
+            "brand_value": "✓",
+            "competitor_status": "cross",
+            "competitor_value": "✕"
+          }
+        },
+        "row_UbLTaA": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Fully customizable templates",
+            "brand_status": "check",
+            "brand_value": "✓",
+            "competitor_status": "cross",
+            "competitor_value": "✕"
+          }
+        },
+        "row_CneEFL": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Zero fluff, high-utility tools",
+            "brand_status": "check",
+            "brand_value": "✓",
+            "competitor_status": "cross",
+            "competitor_value": "✕"
+          }
+        },
+        "row_wTeT7Y": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Lifetime access & free updates",
+            "brand_status": "check",
+            "brand_value": "✓",
+            "competitor_status": "cross",
+            "competitor_value": "✕"
+          }
+        },
+        "row_6gmPUX": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Dedicated customer support",
+            "brand_status": "check",
+            "brand_value": "✓",
+            "competitor_status": "cross",
+            "competitor_value": "✕"
+          }
+        },
+        "row_HyHwUY": {
+          "type": "row",
+          "settings": {
+            "feature_name": "Complete business starter bundles",
+            "brand_status": "check",
+            "brand_value": "✓",
+            "competitor_status": "cross",
+            "competitor_value": "✕"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_RdmfgL",
+        "bullet_dHRBEE",
+        "bullet_qfAFjF",
+        "bullet_qJXYLU",
+        "row_4QgDdg",
+        "row_UbLTaA",
+        "row_CneEFL",
+        "row_wTeT7Y",
+        "row_6gmPUX",
+        "row_HyHwUY"
+      ],
+      "name": "Asset House Comparison",
+      "settings": {
+        "heading": "ASSET HOUSE VS OTHER PROVIDERS",
+        "subtext": "Why ambitious founders choose Asset House for premium business resources. Compare our clean formatting, ready-to-use business templates, and instant download access.",
+        "brand_column_title": "Asset House",
+        "competitor_column_title": "Others"
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "asset_house_comparison_VebeHz"
   ]
 }
