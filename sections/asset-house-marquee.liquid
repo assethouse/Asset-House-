@@ -1,0 +1,112 @@
+<style>
+  .ah-marquee-section {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    padding: 14px 0 !important;
+    overflow: hidden;
+    width: 100% !important;
+    position: relative;
+    border-bottom: 1px solid #333333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .ah-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: ahScrollMarquee 25s linear infinite;
+  }
+
+  .ah-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .ah-marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-right: 40px;
+    white-space: nowrap;
+  }
+
+  .ah-marquee-item {
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    color: #ffffff !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .ah-marquee-item span {
+    color: #888888;
+    font-weight: 400;
+  }
+
+  @keyframes ahScrollMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<div class="ah-marquee-section">
+  <div class="ah-marquee-track">
+    <!-- First set -->
+    <div class="ah-marquee-content">
+      {%- for block in section.blocks -%}
+        <div class="ah-marquee-item" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+          <span>/</span>
+        </div>
+      {%- endfor -%}
+    </div>
+    <!-- Duplicate set for seamless infinite loop -->
+    <div class="ah-marquee-content" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        <div class="ah-marquee-item">
+          {{ block.settings.text }}
+          <span>/</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Asset House Scrolling Bar",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "INSTANT DIGITAL DOWNLOADS"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Asset House Scrolling Bar",
+      "blocks": [
+        { "type": "announcement", "settings": { "text": "INSTANT DIGITAL DOWNLOADS" } },
+        { "type": "announcement", "settings": { "text": "NEW BUSINESS TEMPLATES RESTOCKED" } },
+        { "type": "announcement", "settings": { "text": "100% EDITABLE SPREADSHEETS & PLANNERS" } },
+        { "type": "announcement", "settings": { "text": "DON'T MISS OUT — LIFETIME ACCESS" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
