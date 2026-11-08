@@ -1,0 +1,293 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .asset-house-comparison-section {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-family: inherit;
+    padding: 60px 20px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .ah-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ah-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 900px) {
+    .ah-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  .ah-content h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px 0;
+    color: #000000 !important;
+  }
+
+  .ah-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .ah-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .ah-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+  }
+
+  .ah-feature-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    color: #000000;
+  }
+
+  .ah-table-wrapper {
+    background: #ffffff;
+    border: 1px solid #000000;
+    overflow-x: auto;
+  }
+
+  .ah-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .ah-table th, .ah-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .ah-table th {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+  }
+
+  .ah-table th.col-brand {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    width: 35%;
+  }
+
+  .ah-table th.col-others {
+    background-color: #f5f5f5;
+    color: #666666;
+    text-align: center;
+    width: 30%;
+  }
+  
+  .ah-table th.col-feature {
+    color: #000000;
+    width: 35%;
+  }
+
+  .ah-table td.cell-brand {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .ah-table td.cell-others {
+    text-align: center;
+    color: #666666;
+    background-color: #ffffff;
+  }
+
+  .ah-table tr:last-child td {
+    border-bottom: none;
+  }
+</style>
+
+<div class="asset-house-comparison-section">
+  <div class="ah-container">
+    <div class="ah-grid">
+      
+      <!-- Left Column: Text & Value Propositions -->
+      <div class="ah-content">
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.subtext }}</p>
+        
+        <div class="ah-feature-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'bullet' -%}
+              <div class="ah-feature-item" {{ block.shopify_attributes }}>
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>{{ block.text }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Right Column: Comparison Matrix Table -->
+      <div class="ah-table-wrapper">
+        <table class="ah-table">
+          <thead>
+            <tr>
+              <th class="col-feature">Features</th>
+              <th class="col-brand">{{ section.settings.brand_column_title }}</th>
+              <th class="col-others">{{ section.settings.competitor_column_title }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'row' -%}
+                <tr {{ block.shopify_attributes }}>
+                  <td style="font-weight: 500; color: #000000;">{{ block.feature_name }}</td>
+                  <td class="cell-brand">{{ block.brand_value }}</td>
+                  <td class="cell-others">{{ block.competitor_value }}</td>
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Asset House Comparison",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "ASSET HOUSE VS OTHER PROVIDERS"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Description",
+      "default": "Why thousands of entrepreneurs trust Asset House for their business resources. Compare our professional quality, comprehensive templates, and commitment to practical execution."
+    },
+    {
+      "type": "text",
+      "id": "brand_column_title",
+      "label": "Brand Column Header",
+      "default": "Asset House"
+    },
+    {
+      "type": "text",
+      "id": "competitor_column_title",
+      "label": "Competitor Column Header",
+      "default": "Others"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Left Bullet Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Bullet Text",
+          "default": "Instant secure digital download access upon checkout."
+        }
+      ]
+    },
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_name",
+          "label": "Feature Name",
+          "default": "Professional Support"
+        },
+        {
+          "type": "text",
+          "id": "brand_value",
+          "label": "Asset House Value (e.g., ✓ or text)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "competitor_value",
+          "label": "Others Value (e.g., ✕ or text)",
+          "default": "✕"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Asset House Comparison",
+      "blocks": [
+        {
+          "type": "bullet",
+          "settings": { "text": "Instant secure digital download access upon checkout." }
+        },
+        {
+          "type": "bullet",
+          "settings": { "text": "Designed specifically for modern business builders & beginners." }
+        },
+        {
+          "type": "bullet",
+          "settings": { "text": "Clean, editable spreadsheets and practical business toolkits." }
+        },
+        {
+          "type": "row",
+          "settings": { "feature_name": "Dedicated customer support", "brand_value": "✓", "competitor_value": "✕" }
+        },
+        {
+          "type": "row",
+          "settings": { "feature_name": "Comprehensive digital guides", "brand_value": "✓", "competitor_value": "✕" }
+        },
+        {
+          "type": "row",
+          "settings": { "feature_name": "Zero fluff, high utility templates", "brand_value": "✓", "competitor_value": "✕" }
+        },
+        {
+          "type": "row",
+          "settings": { "feature_name": "Lifetime access & free updates", "brand_value": "✓", "competitor_value": "✕" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
