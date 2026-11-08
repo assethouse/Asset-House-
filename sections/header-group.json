@@ -44,43 +44,6 @@
         "padding-block-end": 23
       }
     },
-    "asset_house_marquee_zfhiXQ": {
-      "type": "asset-house-marquee",
-      "blocks": {
-        "announcement_3XqFAg": {
-          "type": "announcement",
-          "settings": {
-            "text": "INSTANT DIGITAL DOWNLOADS"
-          }
-        },
-        "announcement_MHLeBn": {
-          "type": "announcement",
-          "settings": {
-            "text": "NEW BUSINESS TEMPLATES RESTOCKED"
-          }
-        },
-        "announcement_YnpYx9": {
-          "type": "announcement",
-          "settings": {
-            "text": "100% EDITABLE SPREADSHEETS & PLANNERS"
-          }
-        },
-        "announcement_We7FG3": {
-          "type": "announcement",
-          "settings": {
-            "text": "DON'T MISS OUT — LIFETIME ACCESS"
-          }
-        }
-      },
-      "block_order": [
-        "announcement_3XqFAg",
-        "announcement_MHLeBn",
-        "announcement_YnpYx9",
-        "announcement_We7FG3"
-      ],
-      "name": "Asset House Scrolling Bar",
-      "settings": {}
-    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -164,11 +127,48 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
+    },
+    "asset_house_marquee_zfhiXQ": {
+      "type": "asset-house-marquee",
+      "blocks": {
+        "announcement_3XqFAg": {
+          "type": "announcement",
+          "settings": {
+            "text": "INSTANT DIGITAL DOWNLOADS"
+          }
+        },
+        "announcement_MHLeBn": {
+          "type": "announcement",
+          "settings": {
+            "text": "NEW BUSINESS TEMPLATES RESTOCKED"
+          }
+        },
+        "announcement_YnpYx9": {
+          "type": "announcement",
+          "settings": {
+            "text": "100% EDITABLE SPREADSHEETS & PLANNERS"
+          }
+        },
+        "announcement_We7FG3": {
+          "type": "announcement",
+          "settings": {
+            "text": "DON'T MISS OUT — LIFETIME ACCESS"
+          }
+        }
+      },
+      "block_order": [
+        "announcement_3XqFAg",
+        "announcement_MHLeBn",
+        "announcement_YnpYx9",
+        "announcement_We7FG3"
+      ],
+      "name": "Asset House Scrolling Bar",
+      "settings": {}
     }
   },
   "order": [
     "header_announcements_9jGBFp",
-    "asset_house_marquee_zfhiXQ",
-    "header_section"
+    "header_section",
+    "asset_house_marquee_zfhiXQ"
   ]
 }
