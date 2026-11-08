@@ -1875,18 +1875,3 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
 }
-/* --- TABLET DESKTOP HEADER & SEARCH FIX --- */
-@media screen and (min-width: 768px) and (max-width: 1300px) {
-  /* Hide mobile hamburger drawer toggle */
-  .header__icon--menu, .drawer-opener, .header-drawer {
-    display: none !important;
-  }
-  
-  /* Force inline header navigation links to display horizontally */
-  #header-component .header-menu,
-  #header-component .header__inline-menu,
-  #header-component header-menu {
-    display: flex !important;
-    visibility: visible !important;
-  }
-
