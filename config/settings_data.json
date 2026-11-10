@@ -9,9 +9,9 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/IMG_2191.jpg",
+    "logo": "shopify://shop_images/IMG_5207.png",
     "logo_inverse": "shopify://shop_images/IMG_2180_fe234464-423d-48ff-8913-21d7ec19331e.jpg",
-    "logo_height": 40,
+    "logo_height": 55,
     "logo_height_mobile": 40,
     "favicon": "shopify://shop_images/C521C5CE-5886-4E3E-BD8B-E7D57A5F2365.png",
     "page_text_color": "{{ settings.color_palette.foreground }}",
