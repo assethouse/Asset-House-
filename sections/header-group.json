@@ -131,16 +131,10 @@
     "asset_house_marquee_zfhiXQ": {
       "type": "asset-house-marquee",
       "blocks": {
-        "announcement_3XqFAg": {
-          "type": "announcement",
-          "settings": {
-            "text": "INSTANT DIGITAL DOWNLOADS"
-          }
-        },
         "announcement_MHLeBn": {
           "type": "announcement",
           "settings": {
-            "text": "NEW BUSINESS TEMPLATES RESTOCKED"
+            "text": "BLACK FRIDAY UP TO 40% OFF"
           }
         },
         "announcement_YnpYx9": {
@@ -154,13 +148,19 @@
           "settings": {
             "text": "DON'T MISS OUT — LIFETIME ACCESS"
           }
+        },
+        "announcement_nGXVJx": {
+          "type": "announcement",
+          "settings": {
+            "text": "DON'T MISS OUT — LIFETIME ACCESS"
+          }
         }
       },
       "block_order": [
-        "announcement_3XqFAg",
         "announcement_MHLeBn",
         "announcement_YnpYx9",
-        "announcement_We7FG3"
+        "announcement_We7FG3",
+        "announcement_nGXVJx"
       ],
       "name": "Asset House Scrolling Bar",
       "settings": {}
