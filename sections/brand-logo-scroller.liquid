@@ -1,0 +1,157 @@
+<style>
+  .ah-brand-scroller-section {
+    background-color: #ffffff !important;
+    padding: 50px 0 !important;
+    overflow: hidden;
+    width: 100% !important;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .ah-brand-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #666666;
+    margin-bottom: 30px;
+  }
+
+  .ah-brand-track-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ah-brand-track {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* Exact uniform spacing between logos */
+    width: max-content;
+    animation: ahScrollBrands 30s linear infinite;
+  }
+
+  .ah-brand-track:hover {
+    animation-play-state: paused;
+  }
+
+  .ah-brand-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .ah-brand-item img {
+    max-height: 45px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+
+  .ah-brand-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  @keyframes ahScrollBrands {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<div class="ah-brand-scroller-section">
+  {%- if section.settings.heading != blank -%}
+    <div class="ah-brand-title">{{ section.settings.heading }}</div>
+  {%- endif -%}
+
+  <div class="ah-brand-track-wrapper">
+    <div class="ah-brand-track">
+      <!-- First set of blocks -->
+      {%- for block in section.blocks -%}
+        <div class="ah-brand-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo_url != blank -%}
+            <img src="{{ block.settings.logo_url }}" alt="Brand Logo">
+          {%- else -%}
+            <span style="font-weight: 700; color: #000; font-size: 16px;">LOGO</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+
+      <!-- Duplicate set for seamless continuous loop -->
+      {%- for block in section.blocks -%}
+        <div class="ah-brand-item" aria-hidden="true">
+          {%- if block.settings.logo_url != blank -%}
+            <img src="{{ block.settings.logo_url }}" alt="">
+          {%- else -%}
+            <span style="font-weight: 700; color: #000; font-size: 16px;">LOGO</span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Logo Scroller",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "TRUSTED BY LEADING CREATORS & BRANDS"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_item",
+      "name": "Brand Logo URL",
+      "settings": [
+        {
+          "type": "text",
+          "id": "logo_url",
+          "label": "Logo Image URL (CDN)",
+          "info": "Paste the full Shopify CDN image URL here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Logo Scroller",
+      "blocks": [
+        { 
+          "type": "logo_item", 
+          "settings": { "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2208.webp?v=1794355169" } 
+        },
+        { 
+          "type": "logo_item", 
+          "settings": { "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2210.webp?v=1794355169" } 
+        },
+        { 
+          "type": "logo_item", 
+          "settings": { "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2209.png?v=1794355170" } 
+        },
+        { 
+          "type": "logo_item", 
+          "settings": { "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2211.png?v=1794355170" } 
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
