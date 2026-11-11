@@ -416,10 +416,48 @@
         "brand_column_title": "Asset House",
         "competitor_column_title": "Others"
       }
+    },
+    "brand_logo_scroller_i4nXF8": {
+      "type": "brand-logo-scroller",
+      "blocks": {
+        "logo_item_ft4gqX": {
+          "type": "logo_item",
+          "settings": {
+            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2208.webp?v=1794355169"
+          }
+        },
+        "logo_item_HcKQYz": {
+          "type": "logo_item",
+          "settings": {
+            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2210.webp?v=1794355169"
+          }
+        },
+        "logo_item_JBKKG7": {
+          "type": "logo_item",
+          "settings": {
+            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2209.png?v=1794355170"
+          }
+        },
+        "logo_item_W66yhg": {
+          "type": "logo_item",
+          "settings": {
+            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2211.png?v=1794355170"
+          }
+        }
+      },
+      "block_order": [
+        "logo_item_ft4gqX",
+        "logo_item_HcKQYz",
+        "logo_item_JBKKG7",
+        "logo_item_W66yhg"
+      ],
+      "name": "Brand Logo Scroller",
+      "settings": {}
     }
   },
   "order": [
     "hero_jVaWmY",
+    "brand_logo_scroller_i4nXF8",
     "product_list_fa6P9H",
     "asset_house_comparison_VebeHz"
   ]
