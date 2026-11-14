@@ -12,32 +12,6 @@
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p><strong>SELLING THE MOST AFFORDABLE SHOES & CLOTHING AT HIGH QUALITY</strong></p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "button_H9gpTf": {
           "type": "button",
           "name": "t:names.button",
@@ -59,7 +33,6 @@
         }
       },
       "block_order": [
-        "text_YLPk4p",
         "button_H9gpTf"
       ],
       "name": "t:names.hero",
@@ -97,19 +70,6 @@
     "product_list_fa6P9H": {
       "type": "product-list",
       "blocks": {
-        "payment_icons_UALcGm": {
-          "type": "payment-icons",
-          "name": "t:names.payment_icons",
-          "settings": {
-            "horizontal_alignment": "center",
-            "gap": 10,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "static-header": {
           "type": "_product-list-content",
           "name": "t:names.header",
@@ -285,9 +245,6 @@
           ]
         }
       },
-      "block_order": [
-        "payment_icons_UALcGm"
-      ],
       "name": "t:names.product_list",
       "settings": {
         "collection": "all",
@@ -308,157 +265,10 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "asset_house_comparison_VebeHz": {
-      "type": "asset-house-comparison",
-      "blocks": {
-        "bullet_RdmfgL": {
-          "type": "bullet",
-          "settings": {
-            "text": "Instant access to clean, fully editable business templates & spreadsheets."
-          }
-        },
-        "bullet_dHRBEE": {
-          "type": "bullet",
-          "settings": {
-            "text": "Designed for clarity, productivity, and immediate business execution."
-          }
-        },
-        "bullet_qfAFjF": {
-          "type": "bullet",
-          "settings": {
-            "text": "One-time payment with lifetime access and zero hidden subscription fees."
-          }
-        },
-        "bullet_qJXYLU": {
-          "type": "bullet",
-          "settings": {
-            "text": "Comprehensive beginner-to-advanced digital guides and resource bundles."
-          }
-        },
-        "row_4QgDdg": {
-          "type": "row",
-          "settings": {
-            "feature_name": "Instant digital file access",
-            "brand_status": "check",
-            "brand_value": "✓",
-            "competitor_status": "cross",
-            "competitor_value": "✕"
-          }
-        },
-        "row_UbLTaA": {
-          "type": "row",
-          "settings": {
-            "feature_name": "Fully customizable templates",
-            "brand_status": "check",
-            "brand_value": "✓",
-            "competitor_status": "cross",
-            "competitor_value": "✕"
-          }
-        },
-        "row_CneEFL": {
-          "type": "row",
-          "settings": {
-            "feature_name": "Zero fluff, high-utility tools",
-            "brand_status": "check",
-            "brand_value": "✓",
-            "competitor_status": "cross",
-            "competitor_value": "✕"
-          }
-        },
-        "row_wTeT7Y": {
-          "type": "row",
-          "settings": {
-            "feature_name": "Lifetime access & free updates",
-            "brand_status": "check",
-            "brand_value": "✓",
-            "competitor_status": "cross",
-            "competitor_value": "✕"
-          }
-        },
-        "row_6gmPUX": {
-          "type": "row",
-          "settings": {
-            "feature_name": "Dedicated customer support",
-            "brand_status": "check",
-            "brand_value": "✓",
-            "competitor_status": "cross",
-            "competitor_value": "✕"
-          }
-        },
-        "row_HyHwUY": {
-          "type": "row",
-          "settings": {
-            "feature_name": "Complete business starter bundles",
-            "brand_status": "check",
-            "brand_value": "✓",
-            "competitor_status": "cross",
-            "competitor_value": "✕"
-          }
-        }
-      },
-      "block_order": [
-        "bullet_RdmfgL",
-        "bullet_dHRBEE",
-        "bullet_qfAFjF",
-        "bullet_qJXYLU",
-        "row_4QgDdg",
-        "row_UbLTaA",
-        "row_CneEFL",
-        "row_wTeT7Y",
-        "row_6gmPUX",
-        "row_HyHwUY"
-      ],
-      "name": "Asset House Comparison",
-      "settings": {
-        "heading": "ASSET HOUSE VS OTHER PROVIDERS",
-        "subtext": "Why ambitious founders choose Asset House for premium business resources. Compare our clean formatting, ready-to-use business templates, and instant download access.",
-        "brand_column_title": "Asset House",
-        "competitor_column_title": "Others"
-      }
-    },
-    "brand_logo_scroller_i4nXF8": {
-      "type": "brand-logo-scroller",
-      "blocks": {
-        "logo_item_ft4gqX": {
-          "type": "logo_item",
-          "settings": {
-            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2208.webp?v=1794355169"
-          }
-        },
-        "logo_item_HcKQYz": {
-          "type": "logo_item",
-          "settings": {
-            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2210.webp?v=1794355169"
-          }
-        },
-        "logo_item_JBKKG7": {
-          "type": "logo_item",
-          "settings": {
-            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2209.png?v=1794355170"
-          }
-        },
-        "logo_item_W66yhg": {
-          "type": "logo_item",
-          "settings": {
-            "logo_url": "https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2211.png?v=1794355170"
-          }
-        }
-      },
-      "block_order": [
-        "logo_item_ft4gqX",
-        "logo_item_HcKQYz",
-        "logo_item_JBKKG7",
-        "logo_item_W66yhg"
-      ],
-      "name": "Brand Logo Scroller",
-      "settings": {}
     }
   },
   "order": [
     "hero_jVaWmY",
-    "brand_logo_scroller_i4nXF8",
-    "product_list_fa6P9H",
-    "asset_house_comparison_VebeHz"
+    "product_list_fa6P9H"
   ]
 }

@@ -127,48 +127,10 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
-    },
-    "asset_house_marquee_zfhiXQ": {
-      "type": "asset-house-marquee",
-      "blocks": {
-        "announcement_MHLeBn": {
-          "type": "announcement",
-          "settings": {
-            "text": "BLACK FRIDAY UP TO 40% OFF"
-          }
-        },
-        "announcement_YnpYx9": {
-          "type": "announcement",
-          "settings": {
-            "text": "FREE SHIPPING ORDERS OVER $200"
-          }
-        },
-        "announcement_We7FG3": {
-          "type": "announcement",
-          "settings": {
-            "text": "DON'T MISS OUT — LIFETIME ACCESS"
-          }
-        },
-        "announcement_nGXVJx": {
-          "type": "announcement",
-          "settings": {
-            "text": "DON'T MISS OUT — LIFETIME ACCESS"
-          }
-        }
-      },
-      "block_order": [
-        "announcement_MHLeBn",
-        "announcement_YnpYx9",
-        "announcement_We7FG3",
-        "announcement_nGXVJx"
-      ],
-      "name": "Asset House Scrolling Bar",
-      "settings": {}
     }
   },
   "order": [
     "header_announcements_9jGBFp",
-    "header_section",
-    "asset_house_marquee_zfhiXQ"
+    "header_section"
   ]
 }
