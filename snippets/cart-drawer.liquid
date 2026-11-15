@@ -3,7 +3,11 @@
 {%- enddoc -%}
 
 <cart-drawer class="cart-drawer{% if cart == empty %} is-empty{% endif %}">
-  <div id="CartDrawer" class="cart-drawer__overlay" on:click="cart-drawer/close"></div>
+  <div 
+    id="CartDrawer" 
+    class="cart-drawer__overlay" 
+    onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); document.body.classList.remove('cart-open');"
+  ></div>
   <div
     id="CartDrawer-Drawer"
     class="cart-drawer__inner custom-pitch-black-cart"
@@ -19,7 +23,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          on:click="cart-drawer/close"
+          onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); document.body.classList.remove('cart-open');"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -46,7 +50,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          on:click="cart-drawer/close"
+          onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); document.body.classList.remove('cart-open');"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -63,8 +67,26 @@
   </div>
 </cart-drawer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cartTriggers = document.querySelectorAll('#cart-icon-bubble, a[href*="/cart"], .header__icon--cart, [data-cart-icon]');
+    const cartDrawer = document.querySelector('cart-drawer');
+
+    cartTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        if (cartDrawer) {
+          e.preventDefault();
+          cartDrawer.setAttribute('open', '');
+          cartDrawer.classList.add('active');
+          document.body.classList.add('cart-open');
+        }
+      });
+    });
+  });
+</script>
+
 {% stylesheet %}
-  /* Pitch Black Cart Drawer Container */
+  /* Pitch Black Cart Drawer Container - Hidden by default */
   .cart-drawer__inner.custom-pitch-black-cart {
     background-color: #000000 !important;
     color: #ffffff !important;
@@ -79,6 +101,19 @@
     flex-direction: column;
     padding: 0;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.8);
+    transform: translateX(100%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Show when open attribute or active class is present */
+  cart-drawer[open] .cart-drawer__inner.custom-pitch-black-cart,
+  cart-drawer.active .cart-drawer__inner.custom-pitch-black-cart,
+  .cart-open cart-drawer .cart-drawer__inner.custom-pitch-black-cart {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   /* Top Bar Layout */
@@ -187,5 +222,12 @@
     background: rgba(0, 0, 0, 0.75);
     backdrop-filter: brightness(0.75);
     z-index: 999;
+    display: none;
+  }
+
+  cart-drawer[open] .cart-drawer__overlay,
+  cart-drawer.active .cart-drawer__overlay,
+  .cart-open cart-drawer .cart-drawer__overlay {
+    display: block;
   }
 {% endstylesheet %}
