@@ -39,7 +39,7 @@
         -%}
 
         <div class="custom-faq-item">
-          <button class="custom-faq-question-btn" type="button" aria-expanded="false">
+          <button class="custom-faq-question-btn" type="button" aria-expanded="false" onclick="toggleFaqItem(this)">
             <span class="custom-faq-question-text">{{ question }}</span>
             <span class="custom-faq-icon">
               <svg class="icon-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -56,35 +56,30 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqButtons = document.querySelectorAll('.custom-faq-question-btn');
-    
-    faqButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const item = btn.closest('.custom-faq-item');
-        const answerContainer = item.querySelector('.custom-faq-answer-container');
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+  if (typeof window.toggleFaqItem !== 'function') {
+    window.toggleFaqItem = function(button) {
+      const item = button.closest('.custom-faq-item');
+      const answerContainer = item.querySelector('.custom-faq-answer-container');
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-        // Close all other open accordion items
-        faqButtons.forEach(otherBtn => {
-          if (otherBtn !== btn) {
-            otherBtn.setAttribute('aria-expanded', 'false');
-            otherBtn.closest('.custom-faq-item').querySelector('.custom-faq-answer-container').style.maxHeight = null;
-          }
-        });
-
-        // Toggle current accordion item
-        if (!isExpanded) {
-          btn.setAttribute('aria-expanded', 'true');
-          answerContainer.style.maxHeight = answerContainer.scrollHeight + 'px';
-        } else {
+      // Close all other open accordion items
+      document.querySelectorAll('.custom-faq-question-btn').forEach(btn => {
+        if (btn !== button) {
           btn.setAttribute('aria-expanded', 'false');
-          answerContainer.style.maxHeight = null;
+          btn.closest('.custom-faq-item').querySelector('.custom-faq-answer-container').style.maxHeight = null;
         }
       });
-    });
-  });
+
+      // Toggle current accordion item
+      if (!isExpanded) {
+        button.setAttribute('aria-expanded', 'true');
+        answerContainer.style.maxHeight = answerContainer.scrollHeight + 'px';
+      } else {
+        button.setAttribute('aria-expanded', 'false');
+        answerContainer.style.maxHeight = null;
+      }
+    };
+  }
 </script>
 
 {% stylesheet %}
@@ -102,7 +97,7 @@
 
   .custom-faq-header {
     text-align: center;
-    margin-bottom: 24px; /* Closely positioned to the questions */
+    margin-bottom: 24px;
   }
 
   .custom-faq-tag {
