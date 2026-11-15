@@ -899,37 +899,43 @@
     }
 
     @media screen and (max-width: 749px) {
-      --header-template-columns: 44px 1fr 44px 44px !important;
-      grid-template-areas: 'leftA center rightA rightB' !important;
+      --header-template-columns: var(--header-mobile-bookend) var(--header-mobile-bookend) 1fr
+        var(--header-mobile-bookend) var(--header-mobile-bookend);
+
+      grid-template-areas: 'leftA leftB center rightA rightB';
       grid-column: span 3;
-      column-gap: 0 !important;
-      align-items: center !important;
+      column-gap: 0;
+      align-items: center;
       padding-block: 0;
+
+      /* Match the page gutter so edge icons visually align with in-flow content.
+         --page-margin already includes the larger safe-area inset at this breakpoint. */
       padding-inline: var(--page-margin);
 
       .header-logo {
-        grid-area: center !important;
-        justify-self: center !important;
+        grid-area: center;
       }
 
-      .header__icon--menu {
-        grid-area: leftA !important;
-        justify-self: start !important;
-        padding-inline: 0 !important;
+      &:not(:has(header-actions)) .search-action {
+        grid-area: leftB;
+      }
+
+      &:not(:has(shopify-account)) .search-action {
+        grid-area: rightA;
       }
 
       .search-action {
-        grid-area: rightA !important;
-        display: flex !important;
-        justify-self: center !important;
-        align-items: center !important;
+        grid-area: leftB;
+      }
+
+      .header__icon--menu {
+        justify-content: flex-start;
+        padding-inline: 0;
       }
 
       header-actions {
-        grid-area: rightB !important;
-        display: flex !important;
-        justify-self: end !important;
-        align-items: center !important;
+        grid-area: rightB;
+        justify-content: flex-end;
       }
     }
   }
@@ -937,37 +943,44 @@
   /* not ideal but we need to duplicate these styles for when touch comes into play
     We could avoid the duplication using js to set the data-menu-style attribute on small screens instead of using @media queries */
   #header-component[data-menu-style='drawer'] .header__columns {
-    --header-template-columns: 44px 1fr 44px 44px !important;
-    grid-template-areas: 'leftA center rightA rightB' !important;
+    --header-template-columns: var(--header-mobile-bookend) var(--header-mobile-bookend) 1fr
+      var(--header-mobile-bookend) var(--header-mobile-bookend);
+
+    grid-template-areas: 'leftA leftB center rightA rightB';
     grid-column: span 3;
-    column-gap: 0 !important;
-    align-items: center !important;
+    column-gap: 0;
+    align-items: center;
     padding-block: 0;
+
+    /* Match the page gutter so edge icons visually align with in-flow content.
+       --page-margin already includes the larger safe-area inset at this breakpoint. */
     padding-inline: var(--page-margin);
 
     .header-logo {
-      grid-area: center !important;
-      justify-self: center !important;
+      grid-area: center;
     }
 
-    .header__icon--menu {
-      grid-area: leftA !important;
-      justify-self: start !important;
-      padding-inline: 0 !important;
+    &:not(:has(header-actions)) .search-action {
+      grid-area: leftB;
+    }
+
+    &:not(:has(shopify-account)) .search-action {
+      grid-area: rightA;
     }
 
     .search-action {
-      grid-area: rightA !important;
-      display: flex !important;
-      justify-self: center !important;
-      align-items: center !important;
+      grid-area: leftB;
+    }
+
+    /* Pin glyphs to the content edge of the 44px bookend; keep the full tap target */
+    .header__icon--menu {
+      justify-content: flex-start;
+      padding-inline: 0;
     }
 
     header-actions {
-      grid-area: rightB !important;
-      display: flex !important;
-      justify-self: end !important;
-      align-items: center !important;
+      grid-area: rightB;
+      justify-content: flex-end;
     }
   }
 
@@ -1258,14 +1271,16 @@
     display: none !important;
   }
 
-  /* 2. Desktop Right Column Alignment */
-  @media screen and (min-width: 750px) {
-    .header__column--right {
-      display: flex !important;
-      align-items: center !important;
-      gap: 14px !important;
-      justify-content: flex-end !important;
-    }
+  /* 2. Position search and cart side-by-side on the right with correct spacing */
+  .header__column--right,
+  .header__columns {
+    align-items: center !important;
+  }
+
+  .header__column--right {
+    display: flex !important;
+    gap: 14px !important;
+    justify-content: flex-end !important;
   }
 
   /* 3. Replace cart icon with custom image, matching search bar size */
