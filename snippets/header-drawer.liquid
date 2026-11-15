@@ -66,8 +66,8 @@
       on:click="/toggle"
     >
       <span class="svg-wrapper header-drawer-icon header-drawer-icon--open">
-        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" fill="none" viewBox="0 0 18 16">
-          <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" fill="none" viewBox="0 0 24 16">
+          <path d="M0 1h24M0 8h24M0 15h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
         </svg>
       </span>
       <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
@@ -180,7 +180,7 @@
                               <span class="menu-drawer__menu-item-text wrap-text">{{ childlink.title | escape }}</span>
                             </a>
                           </li>
-                        %}{%- endfor -%}
+                        {%- endfor -%}
                       </ul>
                     </details>
                   {% endcapture %}
@@ -444,7 +444,7 @@
                                               </span>
                                             </a>
                                           </li>
-                                        %}{%- endfor -%}
+                                        {%- endfor -%}
                                       </ul>
                                     </details>
                                   {% endcapture %}
@@ -509,7 +509,7 @@
                                           </span>
                                         </a>
                                       </li>
-                                    %}{%- endfor -%}
+                                    {%- endfor -%}
                                   </ul>
                                 {%- endif -%}
                               {%- endif -%}
@@ -562,7 +562,7 @@
                                         product_view_context: 'dialog'
                                       %}
                                     </li>
-                                  %}{%- endfor -%}
+                                  {%- endfor -%}
                                 {% endpaginate %}
                               {% endif %}
                             </ul>
@@ -772,7 +772,7 @@
                       product_view_context: 'dialog'
                     %}
                   </li>
-                %}{%- endfor -%}
+                {%- endfor -%}
               {% endpaginate %}
             {% endif %}
           </ul>
