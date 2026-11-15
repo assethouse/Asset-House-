@@ -42,12 +42,12 @@
       aria-label="{{ 'accessibility.menu' | t }}"
       on:click="/toggle"
     >
-      <span class="svg-wrapper header-drawer-icon header-drawer-icon--open">
-        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" fill="none" viewBox="0 0 28 16">
+      <span class="svg-wrapper header-drawer-icon header-drawer-icon--open" style="display: inline-flex; align-items: center; justify-content: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" fill="none" viewBox="0 0 28 16" style="transform: scale(1.2); transform-origin: center;">
           <path d="M0 1h28M0 8h28M0 15h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
         </svg>
       </span>
-      <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
+      <span class="svg-wrapper header-drawer-icon header-drawer-icon--close" style="display: none !important;">
         {{- 'icon-close-menu.svg' | inline_asset_content -}}
       </span>
     </summary>
@@ -55,7 +55,7 @@
       ref="menuDrawer"
       class="menu-drawer custom-pitch-black-drawer"
     >
-      <!-- Top Bar: Larger V7 Supply Logo (Top Left) & Bold X Close Button (Top Right) -->
+      <!-- Top Bar: V7 Supply Logo (Top Left) & Bold X Close Button (Top Right) -->
       <div class="menu-drawer__top-bar">
         <a href="{{ routes.root_url }}" class="menu-drawer__logo-link">
           <img src="https://cdn.shopify.com/s/files/1/1032/8109/9078/files/24F59A16-3CF9-420B-B649-5951A0F9670A_53cb2d80-0b9c-4764-89da-51e25b0fc515.png?v=1794711907" alt="{{ shop.name }}" class="menu-drawer__logo-img">
@@ -123,13 +123,13 @@
     height: var(--icon-size-xs);
   }
 
-  /* Correctly hide summary close icon when menu is closed */
-  details:not(.menu-open) .header__icon--menu .header-drawer-icon--close {
-    display: none;
+  /* Permanently hide the close icon in the summary button so it never flashes */
+  .header__icon--menu .header-drawer-icon--close {
+    display: none !important;
   }
 
   details.menu-open .header__icon--menu .header-drawer-icon--open {
-    display: none;
+    display: flex;
   }
 
   /* Pitch Black Drawer & Narrow Width Styling */
