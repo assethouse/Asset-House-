@@ -133,7 +133,7 @@
           "type": "footer-copyright",
           "settings": {
             "show_powered_by": false,
-            "text_color": "{{ settings.color_palette.foreground }}",
+            "text_color": "{{ settings.color_palette.background }}",
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -142,7 +142,7 @@
         "footer_policy_list_VCdnpa": {
           "type": "footer-policy-list",
           "settings": {
-            "text_color": "{{ settings.color_palette.foreground }}",
+            "text_color": "{{ settings.color_palette.background }}",
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -151,7 +151,7 @@
         "social_links_Ew63Kq": {
           "type": "social-links",
           "settings": {
-            "icon_color": "{{ settings.color_palette.foreground }}",
+            "icon_color": "{{ settings.color_palette.background }}",
             "facebook_url": "https://www.facebook.com/",
             "instagram_url": "https://www.instagram.com/",
             "youtube_url": "https://www.youtube.com/",
@@ -178,7 +178,7 @@
       "settings": {
         "section_width": "page-width",
         "gap": 24,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.foreground }}",
         "divider_thickness": 1,
         "divider_color": "#d5d5d5",
         "padding-block-start": 20,
