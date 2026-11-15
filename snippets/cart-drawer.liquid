@@ -3,11 +3,7 @@
 {%- enddoc -%}
 
 <cart-drawer class="cart-drawer{% if cart == empty %} is-empty{% endif %}">
-  <div 
-    id="CartDrawer" 
-    class="cart-drawer__overlay" 
-    onclick="closeCartDrawer()"
-  ></div>
+  <div id="CartDrawer" class="cart-drawer__overlay" on:click="cart-drawer/close"></div>
   <div
     id="CartDrawer-Drawer"
     class="cart-drawer__inner custom-pitch-black-cart"
@@ -23,7 +19,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          onclick="closeCartDrawer()"
+          on:click="cart-drawer/close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -50,7 +46,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          onclick="closeCartDrawer()"
+          on:click="cart-drawer/close"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -67,48 +63,8 @@
   </div>
 </cart-drawer>
 
-<script>
-  window.openCartDrawer = function(e) {
-    if (e) e.preventDefault();
-    const drawer = document.querySelector('cart-drawer');
-    const inner = document.querySelector('.custom-pitch-black-cart');
-    const overlay = document.querySelector('.cart-drawer__overlay');
-    if (drawer) drawer.setAttribute('open', '');
-    if (inner) {
-      inner.style.transform = 'translateX(0)';
-      inner.style.visibility = 'visible';
-      inner.style.opacity = '1';
-    }
-    if (overlay) overlay.style.display = 'block';
-    document.body.classList.add('cart-open');
-  };
-
-  window.closeCartDrawer = function() {
-    const drawer = document.querySelector('cart-drawer');
-    const inner = document.querySelector('.custom-pitch-black-cart');
-    const overlay = document.querySelector('.cart-drawer__overlay');
-    if (drawer) drawer.removeAttribute('open');
-    if (inner) {
-      inner.style.transform = 'translateX(100%)';
-      inner.style.visibility = 'hidden';
-      inner.style.opacity = '0';
-    }
-    if (overlay) overlay.style.display = 'none';
-    document.body.classList.remove('cart-open');
-  };
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const cartTriggers = document.querySelectorAll('#cart-icon-bubble, a[href*="/cart"], .header__icon--cart, [data-cart-icon]');
-    cartTriggers.forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        window.openCartDrawer(e);
-      });
-    });
-  });
-</script>
-
 {% stylesheet %}
-  /* Pitch Black Cart Drawer Container - Hidden by default */
+  /* Pitch Black Cart Drawer Container */
   .cart-drawer__inner.custom-pitch-black-cart {
     background-color: #000000 !important;
     color: #ffffff !important;
@@ -118,22 +74,11 @@
     height: 100dvh;
     top: 0;
     right: 0;
-    z-index: 10000;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     padding: 0;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.8);
-    transform: translateX(100%);
-    visibility: hidden;
-    opacity: 0;
-    transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
-  }
-
-  /* Show when open attribute is set */
-  cart-drawer[open] .cart-drawer__inner.custom-pitch-black-cart {
-    transform: translateX(0) !important;
-    visibility: visible !important;
-    opacity: 1 !important;
   }
 
   /* Top Bar Layout */
@@ -241,11 +186,6 @@
     height: 100dvh;
     background: rgba(0, 0, 0, 0.75);
     backdrop-filter: brightness(0.75);
-    z-index: 9999;
-    display: none;
-  }
-
-  cart-drawer[open] .cart-drawer__overlay {
-    display: block;
+    z-index: 999;
   }
 {% endstylesheet %}
