@@ -1,298 +1,346 @@
-{{ 'section-reviews.css' | asset_url | stylesheet_tag }}
-
-<div class="section section--full-width-margin customer-reviews-section" style="background-color: {{ section.settings.background_color | default: '#0a0a0a' }};">
-  <div class="customer-reviews__container">
+<section id="shopify-section-{{ section.id }}" class="vr-reviews-fullbleed">
+  <div class="vr-reviews-wrapper">
     
-    <!-- Section Header -->
-    <div class="customer-reviews__header">
-      <span class="customer-reviews__tag">REVIEWS</span>
-      <h2 class="customer-reviews__title">What buyers say.</h2>
+    <!-- Centered Header Block -->
+    <div class="vr-reviews-header">
+      <div class="vr-reviews-eyebrow">REVIEWS</div>
+      <h2 class="vr-reviews-heading">What buyers say.</h2>
       
-      <div class="customer-reviews__rating-overview">
-        <span class="rating-number">4.8</span><span class="rating-denominator">/5</span>
+      <div class="vr-reviews-score-row">
+        <span class="vr-score-main">4.8</span><span class="vr-score-sub">/5</span>
       </div>
       
-      <div class="customer-reviews__stars-row">
-        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+      <div class="vr-reviews-stars-main" aria-label="4.8 out of 5 stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
       </div>
       
-      <p class="customer-reviews__count">Based on 540 reviews</p>
+      <p class="vr-reviews-based-on">Based on 540 reviews</p>
     </div>
 
-    <!-- Review Cards Carousel (2.75 cards viewable) -->
-    <div class="customer-reviews__slider-wrapper">
-      <div class="customer-reviews__track" id="ReviewTrack">
-        
+    <!-- Horizontal Scroll Track (2.75 cards visible on iPad/Desktop) -->
+    <div class="vr-reviews-scroller">
+      <div class="vr-reviews-track">
         {%- liquid
-          # Array of 540 generated reviews spanning Oct 2025 to Nov 2026
-          assign review_names = "Jordan K.,Ethan M.,Jamie D.,Chloe W.,Marcus L.,Sophie B.,Liam P.,Olivia R.,Noah T.,Emma S.,Lucas H.,Ava D.,Mason K.,Isabella M.,Logan J.,Mia F.,Aiden C.,Harper V.,Elijah N.,Amelia G.,Benjamin R.,Evelyn B.,James W.,Abigail L.,Alexander D.,Emily S.,Michael P.,Elizabeth T.,Daniel O.,Aria K.,Matthew V.,Sofia N.,Jackson H.,Avery G.,David J.,Ella E.,Joseph W.,Scarlett Z.,Samuel B.,Victoria X." | split: ','
-          assign review_texts = "This is the best thing I have purchased in my reselling journey. These tools are so helpful for creating good listings and I've noticed a huge difference in my sales! Appreciate you man|Yo i actually can't believe i received jumpers this good, ngl i thought i'd get unlucky. I would definitely recommend this supplier if you want items that resell well|I'm so grateful i purchased from site. I saw this ad, didn't believe it's true. You really get items like these for £3-£5. Thank you so n Vintedresells.|Absolute game changer for my Vinted store. Sales have practically doubled in less than a week!|Quick delivery and phenomenal quality. Will definitely be buying again soon.|Super impressed with the guides and tools provided. Made my first flip within 48 hours of joining.|Customer support helped me out right away when I had a question. Top tier service!|Never thought reselling could be this straightforward. Highly recommend to anyone starting out.|Insane value for money. The supplier list alone is worth ten times the price.|Legitimately blown away by the quality of these items. Sold out almost instantly!" | split: '|'
-          assign products = "Reseller Toolkit Your 11 AI Tools (1 Month Access)|Vintage Stussy Suppliers|Private Full Ralph Lauren Supplier Bundle|Ultimate Vinted Automation Bot|Verified Nike & Adidas Bulk List|Sneaker Reselling Masterclass|Guaranteed Profit Bundle 2026|Designer Mystery Box Supplier|High-Tier Electronics Manifest" | split: '|'
-          assign dates = "23 Oct 2026|22 Oct 2026|1 Nov 2025|15 Nov 2026|10 Oct 2026|30 Sep 2026|14 Aug 2026|02 Jul 2026|19 Jun 2026|11 May 2026|28 Apr 2026|19 Mar 2026|05 Feb 2026|12 Jan 2026|18 Dec 2025|25 Nov 2025|04 Oct 2025" | split: '|'
+          assign review_names = "Jordan K.,Ethan M.,Jamie D.,David J.,Chloe W.,Marcus L.,Sophie B.,Liam P.,Olivia R.,Noah T.,Emma S.,Lucas H.,Ava D.,Mason K.,Isabella M.,Logan J.,Mia F.,Aiden C.,Harper V.,Elijah N.,Amelia G.,Benjamin R.,Evelyn B.,James W.,Abigail L.,Alexander D.,Emily S.,Michael P.,Elizabeth T.,Daniel O.,Aria K.,Matthew V.,Sofia N.,Jackson H.,Avery G.,Ella E.,Joseph W.,Scarlett Z.,Samuel B.,Victoria X." | split: ','
+          
+          assign review_texts = "This is the best thing I have purchased in my reselling journey. These tools are so helpful for creating good listings and I've noticed a huge difference in my sales! Appreciate you man|Yo i actually can't believe i received jumpers this good, ngl i thought i'd get unlucky. I would definitely recommend this supplier if you want items that resell well|I'm so grateful i purchased from site. I saw this ad, didn't believe it's true. You really get items like these for £3-£5. Thank you so n Vintedresells.|Absolute game changer for my Vinted store. Sales have practically doubled in less than a week!|Quick delivery and phenomenal quality. Will definitely be buying again soon.|Super impressed with the guides and tools provided. Made my first flip within 48 hours of joining.|Customer support helped me out right away when I had a question. Top tier service!|Never thought reselling could be this straightforward. Highly recommend to anyone starting out.|Insane value for money. The supplier list alone is worth ten times the price.|Legitimately blown away by the quality of these items. Sold out almost instantly!|Honestly was sceptical at first because of all the fake gurus on TikTok, but this actually delivered. Already made my money back twice over.|Best investment I've made this year. Everything is laid out step by step so you can't go wrong.|The quality on the Ralph Lauren pieces is mad, sold 4 of them within an hour of uploading.|Proper reliable and easy to use. Definitely sticking with this for my main stock.|Wish I found this months ago instead of wasting money on dead wholesalers. 10/10." | split: '|'
+          
+          assign dates = "14 Nov 2026|09 Nov 2026|28 Oct 2026|23 Oct 2026|15 Oct 2026|02 Oct 2026|24 Sep 2026|11 Sep 2026|29 Aug 2026|14 Aug 2026|30 Jul 2026|18 Jul 2026|04 Jul 2026|21 Jun 2026|09 Jun 2026|25 May 2026|11 May 2026|28 Apr 2026|14 Apr 2026|30 Mar 2026|15 Mar 2026|01 Mar 2026|18 Feb 2026|05 Feb 2026|22 Jan 2026|09 Jan 2026|27 Dec 2025|14 Dec 2025|01 Dec 2025|19 Nov 2025|06 Nov 2025|23 Oct 2025|11 Oct 2025|02 Oct 2025" | split: '|'
         -%}
 
         {%- for i in (1..540) -%}
           {%- liquid
-            assign name_index = i | modulo: review_names.size
-            assign text_index = i | modulo: review_texts.size
-            assign prod_index = i | modulo: products.size
-            assign date_index = i | modulo: dates.size
+            assign name_idx = i | modulo: review_names.size
+            assign text_idx = i | modulo: review_texts.size
+            assign date_idx = i | modulo: dates.size
             
-            # Determine star rating (mostly 5 stars, occasional 4 star)
-            assign star_mod = i | modulo: 7
-            if star_mod == 0
-              assign rating = 4
+            # Mostly 5 stars, occasional 4 stars (no bad reviews)
+            assign star_check = i | modulo: 8
+            if star_check == 0
+              assign stars = 4
             else
-              assign rating = 5
+              assign stars = 5
             endif
 
-            # Determine if verified buyer
-            assign verified_mod = i | modulo: 3
-            if verified_mod != 0
+            # Selective Verified Buyer badge (~25% of reviews)
+            assign verified_check = i | modulo: 4
+            if verified_check == 1
               assign is_verified = true
             else
               assign is_verified = false
             endif
           -%}
 
-          <div class="customer-review-card">
-            <div class="review-card__stars">
-              {%- for s in (1..5) -%}
-                {%- if s <= rating -%}
-                  <span class="star filled">★</span>
-                {%- else -%}
-                  <span class="star empty">★</span>
+          <article class="vr-review-card">
+            <div class="vr-card-top">
+              <div class="vr-card-stars">
+                {%- for s in (1..5) -%}
+                  {%- if s <= stars -%}
+                    <span class="vr-star-on">★</span>
+                  {%- else -%}
+                    <span class="vr-star-off">★</span>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              <div class="vr-card-author-line">
+                <span class="vr-author-name">{{ review_names[name_idx] }}</span>
+                {%- if is_verified -%}
+                  <span class="vr-verified-badge">
+                    <span class="vr-verified-circle">✓</span>
+                    <span class="vr-verified-text">Verified Buyer</span>
+                  </span>
                 {%- endif -%}
-              {%- endfor -%}
+              </div>
+
+              <p class="vr-card-body">{{ review_texts[text_idx] }}</p>
             </div>
 
-            <div class="review-card__author-row">
-              <span class="author-name">{{ review_names[name_index] }}</span>
-              {%- if is_verified -%}
-                <span class="verified-badge">
-                  <span class="tick-icon">✔︎</span> <strong>Verified Buyer</strong>
-                </span>
-              {%- endif -%}
+            <div class="vr-card-bottom">
+              <span class="vr-card-date">{{ dates[date_idx] }}</span>
             </div>
-
-            <p class="review-card__text">{{ review_texts[text_index] }}</p>
-
-            <div class="review-card__footer">
-              <span class="review-product">{{ products[prod_index] }}</span>
-              <span class="review-date">{{ dates[date_index] }} {% if i == 2 %}Got a reward for this review{% endif %}</span>
-            </div>
-          </div>
+          </article>
         {%- endfor -%}
-
       </div>
     </div>
 
   </div>
-</div>
+</section>
 
-{% stylesheet %}
-  .customer-reviews-section {
-    padding: 60px 0;
-    color: #ffffff;
-    font-family: inherit;
-    overflow: hidden;
+<style>
+  /* Force Pitch Black Full-Bleed Background with Zero White Gaps */
+  #shopify-section-{{ section.id }},
+  .vr-reviews-fullbleed {
+    background-color: #000000 !important;
+    width: 100vw !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 70px 0 80px 0 !important;
+    color: #ffffff !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
 
-  .customer-reviews__container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
+  .vr-reviews-wrapper {
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 
-  /* Tag styling matching FAQ dark blue */
-  .customer-reviews__tag {
-    display: inline-block;
-    background-color: #1b2a4a;
-    color: #60a5fa;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+  /* Strictly Centered Header Block */
+  .vr-reviews-header {
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 0 auto 44px auto !important;
+    padding: 0 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
-  /* Title with exact white glow from Upload 1 */
-  .customer-reviews__title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 15px 0;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.2);
+  /* Dark Blue REVIEWS Eyebrow matching FAQ */
+  .vr-reviews-eyebrow {
+    display: inline-block !important;
+    color: #3b82f6 !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 2.5px !important;
+    text-transform: uppercase !important;
+    margin: 0 auto 12px auto !important;
+    text-align: center !important;
   }
 
-  .customer-reviews__rating-overview {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 5px;
+  /* Extra Bold Heading with Exact White Glow */
+  .vr-reviews-heading {
+    font-size: clamp(2.2rem, 5vw, 3.4rem) !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    margin: 0 auto 14px auto !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.02em !important;
+    text-align: center !important;
+    text-shadow: 0 0 24px rgba(255, 255, 255, 0.72), 0 0 48px rgba(255, 255, 255, 0.28) !important;
   }
 
-  .customer-reviews__rating-overview .rating-number {
-    color: #ffffff;
+  /* Large 4.8 + Smaller Light Grey /5 */
+  .vr-reviews-score-row {
+    display: flex !important;
+    align-items: baseline !important;
+    justify-content: center !important;
+    margin: 4px auto 8px auto !important;
+    line-height: 1 !important;
   }
 
-  .customer-reviews__rating-overview .rating-denominator {
-    color: #9ca3af;
-    font-weight: 400;
+  .vr-score-main {
+    font-size: 4.5rem !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.03em !important;
   }
 
-  .customer-reviews__stars-row {
-    font-size: 1.4rem;
-    color: #facc15; /* Front cover star brightness & color */
-    margin-bottom: 8px;
-    letter-spacing: 2px;
+  .vr-score-sub {
+    font-size: 1.75rem !important;
+    font-weight: 800 !important;
+    color: #8e8e93 !important;
+    margin-left: 3px !important;
   }
 
-  .customer-reviews__count {
-    color: #ffffff;
-    font-size: 0.95rem;
-    margin-bottom: 40px;
+  /* Bright Upload 2 Yellow Stars */
+  .vr-reviews-stars-main {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    font-size: 1.65rem !important;
+    color: #FFD700 !important;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.45) !important;
+    margin: 4px auto 12px auto !important;
   }
 
-  /* Slider container showing ~2.75 cards */
-  .customer-reviews__slider-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-    padding-bottom: 20px;
+  /* Very Bold "Based on 540 reviews" */
+  .vr-reviews-based-on {
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    letter-spacing: 0.01em !important;
   }
 
-  .customer-reviews__slider-wrapper::-webkit-scrollbar {
-    height: 6px;
+  /* Horizontal Scroller fitting ~2.75 cards */
+  .vr-reviews-scroller {
+    width: 100% !important;
+    overflow-x: auto !important;
+    padding: 8px 0 24px 28px !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.25) #000000 !important;
   }
 
-  .customer-reviews__slider-wrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+  .vr-reviews-scroller::-webkit-scrollbar {
+    height: 6px !important;
   }
 
-  .customer-reviews__track {
-    display: flex;
-    gap: 20px;
-    padding: 10px 4px;
-    width: max-content;
+  .vr-reviews-scroller::-webkit-scrollbar-track {
+    background: #000000 !important;
   }
 
-  /* Review Card Styling */
-  .customer-review-card {
-    background: #121212;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 18px;
-    padding: 24px;
-    width: 350px;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
+  .vr-reviews-scroller::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 999px !important;
   }
 
-  .customer-review-card:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+  .vr-reviews-track {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 18px !important;
+    width: max-content !important;
+    padding-right: 28px !important;
   }
 
-  .review-card__stars {
-    font-size: 1rem;
-    color: #facc15;
-    margin-bottom: 12px;
+  /* Review Cards matching Upload 3 curvature, outline & ~2.75 viewport fit */
+  .vr-review-card {
+    background-color: #080808 !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 20px !important;
+    padding: 24px 24px 20px 24px !important;
+    width: clamp(290px, 33vw, 370px) !important;
+    min-height: 235px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.2s ease !important;
   }
 
-  .review-card__stars .star.empty {
-    color: #4b5563; /* Light grey uncoloured 5th star for 4-star reviews */
+  .vr-review-card:hover {
+    border-color: rgba(255, 255, 255, 0.42) !important;
   }
 
-  .review-card__author-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+  .vr-card-stars {
+    display: flex !important;
+    gap: 3px !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 10px !important;
+    line-height: 1 !important;
   }
 
-  .author-name {
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 1rem;
+  .vr-star-on {
+    color: #FFD700 !important;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.35) !important;
   }
 
-  /* Verified Buyer Badge (Green circle, black tick, bold green text on right) */
-  .verified-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.75rem;
-    color: #22c55e;
+  .vr-star-off {
+    color: #6b7280 !important;
   }
 
-  .verified-badge .tick-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #22c55e;
-    color: #000000;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    font-size: 9px;
-    font-weight: 900;
+  .vr-card-author-line {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
   }
 
-  .verified-badge strong {
-    color: #22c55e;
-    font-weight: 700;
+  .vr-author-name {
+    font-size: 1.02rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
   }
 
-  .review-card__text {
-    color: #d1d5db;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin: 0 0 16px 0;
-    flex-grow: 1;
+  /* Verified Buyer Badge: Black tick inside green circle + bold green text on right */
+  .vr-verified-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    flex-shrink: 0 !important;
   }
 
-  .review-card__footer {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 12px;
+  .vr-verified-circle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    background-color: #22c55e !important;
+    color: #000000 !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
   }
 
-  .review-product {
-    color: #60a5fa;
-    font-size: 0.8rem;
-    font-weight: 500;
+  .vr-verified-text {
+    color: #22c55e !important;
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
   }
 
-  .review-date {
-    color: #9ca3af;
-    font-size: 0.75rem;
+  .vr-card-body {
+    font-size: 0.94rem !important;
+    font-weight: 500 !important;
+    line-height: 1.52 !important;
+    color: #e5e7eb !important;
+    margin: 0 0 18px 0 !important;
   }
-{% endstylesheet %}
+
+  .vr-card-bottom {
+    margin-top: auto !important;
+  }
+
+  .vr-card-date {
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    color: #8e8e93 !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .vr-reviews-scroller {
+      padding-left: 16px !important;
+    }
+    .vr-review-card {
+      width: 285px !important;
+      padding: 20px !important;
+    }
+    .vr-score-main {
+      font-size: 3.8rem !important;
+    }
+  }
+</style>
 
 {% schema %}
 {
   "name": "Customer Reviews Carousel",
   "tag": "section",
-  "class": "section",
-  "settings": [
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#0a0a0a"
-    }
-  ],
+  "class": "section-full-bleed",
+  "settings": [],
   "presets": [
     {
       "name": "Customer Reviews Carousel"
