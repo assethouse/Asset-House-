@@ -55,7 +55,7 @@
       ref="menuDrawer"
       class="menu-drawer custom-pitch-black-drawer"
     >
-      <!-- Top Bar: V7 Supply Logo (Top Left) & Bold X Close Button (Top Right) -->
+      <!-- Top Bar: Larger V7 Supply Logo (Top Left) & Bold X Close Button (Top Right) -->
       <div class="menu-drawer__top-bar">
         <a href="{{ routes.root_url }}" class="menu-drawer__logo-link">
           <img src="https://cdn.shopify.com/s/files/1/1032/8109/9078/files/24F59A16-3CF9-420B-B649-5951A0F9670A_53cb2d80-0b9c-4764-89da-51e25b0fc515.png?v=1794711907" alt="{{ shop.name }}" class="menu-drawer__logo-img">
@@ -123,6 +123,15 @@
     height: var(--icon-size-xs);
   }
 
+  /* Correctly hide summary close icon when menu is closed */
+  details:not(.menu-open) .header__icon--menu .header-drawer-icon--close {
+    display: none;
+  }
+
+  details.menu-open .header__icon--menu .header-drawer-icon--open {
+    display: none;
+  }
+
   /* Pitch Black Drawer & Narrow Width Styling */
   .menu-drawer.custom-pitch-black-drawer {
     background-color: #000000 !important;
@@ -157,8 +166,9 @@
     padding: 22px 20px 16px 20px;
   }
 
+  /* Larger V7 Supply Logo matching Upload 1 header height */
   .menu-drawer__logo-img {
-    height: 24px;
+    height: 30px;
     width: auto;
     object-fit: contain;
     display: block;
