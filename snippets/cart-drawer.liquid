@@ -6,7 +6,7 @@
   <div 
     id="CartDrawer" 
     class="cart-drawer__overlay" 
-    onclick="document.querySelector('cart-drawer')?.removeAttribute('open'); document.querySelector('cart-drawer')?.classList.remove('active'); document.body.classList.remove('cart-open');"
+    onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active');"
   ></div>
   <div
     id="CartDrawer-Drawer"
@@ -23,7 +23,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          onclick="document.querySelector('cart-drawer')?.removeAttribute('open'); document.querySelector('cart-drawer')?.classList.remove('active'); document.body.classList.remove('cart-open'); this.closest('cart-drawer')?.close?.();"
+          onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); drawer.close?.();"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -50,7 +50,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          onclick="document.querySelector('cart-drawer')?.removeAttribute('open'); document.querySelector('cart-drawer')?.classList.remove('active'); document.body.classList.remove('cart-open'); this.closest('cart-drawer')?.close?.();"
+          onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); drawer.close?.();"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -89,10 +89,8 @@
     transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
   }
 
-  /* Show cart drawer when active/open */
-  cart-drawer[open] .cart-drawer__inner.custom-pitch-black-cart,
-  cart-drawer.active .cart-drawer__inner.custom-pitch-black-cart,
-  .cart-open cart-drawer .cart-drawer__inner.custom-pitch-black-cart {
+  /* ONLY show cart drawer when cart-drawer has the open attribute */
+  cart-drawer[open] .cart-drawer__inner.custom-pitch-black-cart {
     transform: translateX(0) !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -207,9 +205,7 @@
     display: none;
   }
 
-  cart-drawer[open] .cart-drawer__overlay,
-  cart-drawer.active .cart-drawer__overlay,
-  .cart-open cart-drawer .cart-drawer__overlay {
+  cart-drawer[open] .cart-drawer__overlay {
     display: block;
   }
 {% endstylesheet %}
