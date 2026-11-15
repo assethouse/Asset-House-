@@ -369,48 +369,45 @@
   "
 >
   <script>
-    (function setHeaderMenuStyle() {
+    (function enforceHeaderLayout() {
       const headerComponent = document.currentScript?.parentElement;
       if (!headerComponent) return;
 
       function enforceMenu() {
         if (window.innerWidth >= 480) {
           headerComponent.dataset.menuStyle = 'menu';
-        }
-      }
+          
+          // Move search action into right column next to cart actions
+          const searchAction = document.querySelector('.search-action');
+          const rightColumn = document.querySelector('.header__column--right');
+          const headerActions = document.querySelector('header-actions');
+          if (searchAction && rightColumn && headerActions) {
+            rightColumn.insertBefore(searchAction, headerActions);
+          }
 
-      function adjustDesktopHeader() {
-        if (window.innerWidth >= 480) {
-          // Remove Home and More menu items
-          document.querySelectorAll('.menu-list__list-item, .menu-list__link, .menu-drawer__list-item').forEach(el => {
+          // Remove Home and More menu items entirely
+          document.querySelectorAll('.menu-list__link, .menu-list__list-item').forEach(el => {
             const text = el.textContent.trim().toLowerCase();
             if (text === 'home' || text === 'more') {
-              el.style.display = 'none';
+              const li = el.closest('li') || el;
+              li.style.display = 'none';
             }
           });
-
-          // Move search bar next to cart in the right column
-          const rightColumn = headerComponent.querySelector('.header__column--right');
-          const searchAction = headerComponent.querySelector('.search-action');
-          if (rightColumn && searchAction && !rightColumn.contains(searchAction)) {
-            rightColumn.insertBefore(searchAction, rightColumn.firstChild);
-          }
         }
       }
 
       enforceMenu();
-      adjustDesktopHeader();
-      window.addEventListener('resize', () => {
-        enforceMenu();
-        adjustDesktopHeader();
-      });
+      window.addEventListener('resize', enforceMenu);
+      document.addEventListener('DOMContentLoaded', enforceMenu);
+      setTimeout(enforceMenu, 150);
+      setTimeout(enforceMenu, 600);
 
       const observer = new MutationObserver(() => {
         if (window.innerWidth >= 480) {
           if (headerComponent.dataset.menuStyle !== 'menu') {
             headerComponent.dataset.menuStyle = 'menu';
           }
-          adjustDesktopHeader();
+          enforceMenu();
         }
       });
       observer.observe(headerComponent, { attributes: true, childList: true, subtree: true });
@@ -1062,7 +1059,7 @@
   }
 
   /* ==========================================================
-     CUSTOM HEADER OVERRIDES: Layout, Headings, Bolder Font, Search next to Cart
+     CUSTOM HEADER OVERRIDES: Search next to Cart, Bolder Headings, Hide Home/More
      ========================================================== */
 
   /* 1. Hide account icon */
@@ -1073,7 +1070,7 @@
     display: none !important;
   }
 
-  /* 2. Desktop & iPad Right Column Side-by-Side Search & Cart */
+  /* 2. Desktop & iPad Right Column: Search Bar next to Cart on the Right */
   @media screen and (min-width: 480px) {
     .header__column--right {
       display: flex !important;
@@ -1084,10 +1081,12 @@
     .header__column--right .search-action {
       display: flex !important;
       align-items: center !important;
+      order: 1 !important;
     }
     .header__column--right header-actions {
       display: flex !important;
       align-items: center !important;
+      order: 2 !important;
     }
   }
 
@@ -1126,11 +1125,17 @@
     justify-content: center !important;
   }
 
-  /* 4. Desktop & iPad Header Navigation Headings: Bolder */
+  /* 4. Desktop & iPad Navigation Headings: Bolder & Hide Home / More */
   @media screen and (min-width: 480px) {
     .header-menu .menu-list__link {
       font-weight: 700 !important;
       font-size: 1.6rem !important;
+    }
+
+    /* Completely hide Home and More menu links */
+    .header-menu .menu-list__list-item:has(a[href="/"], a[href*="home"], a[href*="more"]),
+    .header-menu .menu-list__link:is([href="/"], [href*="home"], [href*="more"]) {
+      display: none !important;
     }
   }
 {% endstylesheet %}
