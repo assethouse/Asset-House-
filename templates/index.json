@@ -217,11 +217,17 @@
       "type": "main-faq",
       "name": "Custom FAQ",
       "settings": {}
+    },
+    "reviews_wJ73Cr": {
+      "type": "reviews",
+      "name": "Customer Reviews Carousel",
+      "settings": {}
     }
   },
   "order": [
     "front_cover_HBTGLt",
     "product_list_fa6P9H",
-    "main_faq_K97JmC"
+    "main_faq_K97JmC",
+    "reviews_wJ73Cr"
   ]
 }
