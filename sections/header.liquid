@@ -45,6 +45,8 @@
     assign transparent_text_contrast = 'var(--palette-lightest)'
   endif
 
+  # Cart bubble colors: custom styles apply in every header state; default
+  # mirrors the top row's effective text color, with a contrasting text color.
   if section.settings.bubble_style == 'custom' or section.settings.text_color_top != blank or section.settings.background_color_top != blank
     assign cart_bubble_color_override = true
   endif
@@ -105,6 +107,7 @@
     assign search_class = 'search-action--hidden-on-drawer'
   endif
 
+  # Handle localization positioning
   if section.settings.localization_position == 'left'
     if section.settings.search_position == 'left'
       if shop.customer_accounts_enabled
@@ -132,12 +135,16 @@
     render 'search', style: search_style, class: search_class, display_style: section.settings.actions_display_style
   endcapture
 
+  # Skip drawer search under specific conditions:
+  # Always render if search_row is bottom
+  # Don't render when shop.customer_accounts_enabled is false and search_position is left and search_style is not none
   assign skip_drawer_search = false
   if shop.customer_accounts_enabled == false and section.settings.search_position == 'left' and search_style != 'none'
     assign skip_drawer_search = true
   endif
 
   if section.settings.search_row == 'bottom' or search_style != 'none' and skip_drawer_search == false
+    # Mobile search duplicate for when search is not in the right order for mobile layout
     capture drawer_search
       render 'search', class: 'search-action--hidden-on-menu', style: search_style, display_style: section.settings.actions_display_style
     endcapture
@@ -196,9 +203,11 @@
     assign class = class | append: ' ' | append: collapse_header_paddings_class
   endif
 
+  # Determine transparent background value
   assign top_transparent = false
   assign bottom_transparent = false
 
+  # Only explicit colors make a row transparent
   assign top_row_color = section.settings.background_color_top
   assign bottom_row_color = section.settings.background_color_bottom
 
@@ -369,52 +378,31 @@
   "
 >
   <script>
-    (function enforceHeaderLayout() {
+    (function setHeaderMenuStyle() {
       const headerComponent = document.currentScript?.parentElement;
       if (!headerComponent) return;
 
       function enforceMenu() {
         if (window.innerWidth >= 480) {
           headerComponent.dataset.menuStyle = 'menu';
-          
-          // Move search action into right column next to cart actions
-          const searchAction = document.querySelector('.search-action');
-          const rightColumn = document.querySelector('.header__column--right');
-          const headerActions = document.querySelector('header-actions');
-          if (searchAction && rightColumn && headerActions) {
-            rightColumn.insertBefore(searchAction, headerActions);
-          }
-
-          // Remove Home and More menu items entirely
-          document.querySelectorAll('.menu-list__link, .menu-list__list-item').forEach(el => {
-            const text = el.textContent.trim().toLowerCase();
-            if (text === 'home' || text === 'more') {
-              const li = el.closest('li') || el;
-              li.style.display = 'none';
-            }
-          });
         }
       }
 
       enforceMenu();
       window.addEventListener('resize', enforceMenu);
-      document.addEventListener('DOMContentLoaded', enforceMenu);
-      setTimeout(enforceMenu, 150);
-      setTimeout(enforceMenu, 600);
 
       const observer = new MutationObserver(() => {
-        if (window.innerWidth >= 480) {
-          if (headerComponent.dataset.menuStyle !== 'menu') {
-            headerComponent.dataset.menuStyle = 'menu';
-          }
-          enforceMenu();
+        if (window.innerWidth >= 480 && headerComponent.dataset.menuStyle !== 'menu') {
+          headerComponent.dataset.menuStyle = 'menu';
         }
       });
-      observer.observe(headerComponent, { attributes: true, childList: true, subtree: true });
+      observer.observe(headerComponent, { attributes: true, attributeFilter: ['data-menu-style'] });
     })();
   </script>
   <div class="header__underlay header__underlay-closed"></div>
-  <div class="header__underlay header__underlay-open"></div>
+  <div
+    class="header__underlay header__underlay-open"
+  ></div>
   {%- if request.page_type == 'index' -%}
     <h1 class="visually-hidden">{{ shop.name }}</h1>
   {%- endif -%}
@@ -522,7 +510,7 @@
   body {
     --header-height: 60px;
     --header-group-height: var(--header-height);
-    --transparent-header-offset-boolean: 0;
+    --transparent-header-offset-boolean: 0; /* stylelint-disable-line declaration-property-value-disallowed-list */
   }
 
   .header {
@@ -550,6 +538,7 @@
     #header-component .header-menu {
       display: flex !important;
     }
+    /* Hide localization / GBP dropdown on iPad and Desktop */
     #header-component .dropdown-localization {
       display: none !important;
     }
@@ -583,6 +572,7 @@
     position: absolute;
     top: 0;
     inset-inline: 0;
+
     z-index: var(--layer-overlay);
 
     &[transparent='not-sticky'][data-sticky-state='active'],
@@ -1059,10 +1049,10 @@
   }
 
   /* ==========================================================
-     CUSTOM HEADER OVERRIDES: Search next to Cart, Bolder Headings, Hide Home/More
+     CUSTOM HEADER OVERRIDES & DESKTOP/IPAD FIXES
      ========================================================== */
 
-  /* 1. Hide account icon */
+  /* 1. Hide account icon everywhere */
   .header__icon--account,
   .account-button,
   shopify-account,
@@ -1070,7 +1060,7 @@
     display: none !important;
   }
 
-  /* 2. Desktop & iPad Right Column: Search Bar next to Cart on the Right */
+  /* 2. Desktop & iPad Right Column Layout: Search right next to Cart */
   @media screen and (min-width: 480px) {
     .header__column--right {
       display: flex !important;
@@ -1078,19 +1068,45 @@
       gap: 16px !important;
       justify-content: flex-end !important;
     }
+
+    /* Force search action and cart action side by side */
     .header__column--right .search-action {
       display: flex !important;
       align-items: center !important;
       order: 1 !important;
+      margin: 0 !important;
     }
+
     .header__column--right header-actions {
       display: flex !important;
       align-items: center !important;
       order: 2 !important;
+      margin: 0 !important;
     }
   }
 
-  /* 3. Replace cart icon with custom image IMG_2324.png */
+  /* 3. Hide Unwanted Nav Links on Desktop & iPad (Home, More, Founders Journey, Find My Order) */
+  @media screen and (min-width: 480px) {
+    .menu-list__list-item:has(a:is([href*="home"], [href*="more"], [href*="founder"], [href*="order"])),
+    .menu-list__list-item:has(a:contains("Home")),
+    .menu-list__list-item:has(a:contains("More")),
+    .menu-list__list-item:has(a:contains("Founders")),
+    .menu-list__list-item:has(a:contains("Find My Order")) {
+      display: none !important;
+    }
+  }
+
+  /* 4. Make Navigation Heading Links Bolder on Desktop & iPad */
+  @media screen and (min-width: 480px) {
+    .menu-list__link,
+    .menu-list__link span,
+    .header-menu a,
+    .overflow-menu a {
+      font-weight: 700 !important;
+    }
+  }
+
+  /* 5. Custom Cart Image replacement (IMG_2324.png) */
   .header__icon--cart,
   #cart-icon-bubble,
   .header-actions__action--cart {
@@ -1123,20 +1139,6 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  }
-
-  /* 4. Desktop & iPad Navigation Headings: Bolder & Hide Home / More */
-  @media screen and (min-width: 480px) {
-    .header-menu .menu-list__link {
-      font-weight: 700 !important;
-      font-size: 1.6rem !important;
-    }
-
-    /* Completely hide Home and More menu links */
-    .header-menu .menu-list__list-item:has(a[href="/"], a[href*="home"], a[href*="more"]),
-    .header-menu .menu-list__link:is([href="/"], [href*="home"], [href*="more"]) {
-      display: none !important;
-    }
   }
 {% endstylesheet %}
 
