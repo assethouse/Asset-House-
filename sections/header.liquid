@@ -1,5 +1,4 @@
 {% liquid
-  # Removed drawer_search entirely to permanently eliminate the duplicate search bar issue
   assign order = 'logo,menu,localization,search,actions'
 
   assign rows = 'top,bottom' | split: ','
@@ -551,11 +550,11 @@
   }
 
   /* ==========================================================
-     FINAL CLEAN HEADER OVERRIDES:
-     - Logo on Left (Order 1)
-     - 5 Headings DEAD-CENTERED (Order 2)
-     - EXACTLY ONE Search Bar + Cart Side-by-Side on Right (Order 3)
-     - Account & GBP selectors fully hidden
+     FINAL CLEAN HEADER OVERRIDES (IPAD & DESKTOP):
+     - Hide Account icon & Left-side search bars
+     - Logo on Left
+     - Headings ABSOLUTE-CENTERED (Bang on center)
+     - Single Search Bar + Custom Cart Side-by-Side on Right
      ========================================================== */
 
   .header__icon--account,
@@ -565,8 +564,16 @@
     display: none !important;
   }
 
+  /* Forcefully remove any search icon on the left side */
+  .header__column--left .search-action,
+  .header__column--center .search-action,
+  .search-action--hidden-on-menu {
+    display: none !important;
+  }
+
   @media screen and (min-width: 480px) {
     .header__columns {
+      position: relative !important;
       display: flex !important;
       justify-content: space-between !important;
       align-items: center !important;
@@ -577,22 +584,23 @@
     /* Left: Logo */
     .header__column--left,
     .header-logo {
-      order: 1 !important;
-      flex: 0 0 auto !important;
       display: flex !important;
       justify-content: flex-start !important;
       align-items: center !important;
+      z-index: 2 !important;
     }
 
-    /* Center: 5 Headings (Shop, How it works, £1,000 guarantee, FAQ, Contact) */
+    /* Center: Headings ABSOLUTE-CENTERED (Bang on dead center) */
     .header__column--center,
     header-menu,
     .overflow-menu {
-      order: 2 !important;
-      flex: 1 1 auto !important;
+      position: absolute !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
+      z-index: 1 !important;
     }
 
     .overflow-menu::part(list),
@@ -603,14 +611,13 @@
       margin: 0 auto !important;
     }
 
-    /* Right: Single Search Bar + Cart Side-by-Side */
+    /* Right: Single Search Bar + Custom Cart Side-by-Side */
     .header__column--right {
-      order: 3 !important;
-      flex: 0 0 auto !important;
       display: flex !important;
       align-items: center !important;
       justify-content: flex-end !important;
       gap: 16px !important;
+      z-index: 2 !important;
     }
 
     .header__column--right .search-action,
@@ -621,7 +628,6 @@
       opacity: 1 !important;
       visibility: visible !important;
       margin: 0 !important;
-      order: 1 !important;
     }
 
     .header__column--right header-actions,
@@ -629,24 +635,13 @@
       display: flex !important;
       align-items: center !important;
       margin: 0 !important;
-      order: 2 !important;
     }
 
-    /* Bold Headings */
+    /* Bold Navigation Headings */
     .menu-list__link,
     .menu-list__list-item a,
     header-menu a {
       font-weight: 700 !important;
-    }
-
-    /* Hide Home, More, etc. */
-    .menu-list__list-item:has(a[href="/"]),
-    .menu-list__list-item:has(a[href*="home"]),
-    .menu-list__list-item:has(a[href*="more"]),
-    .menu-list__list-item:has(a[href*="founder"]),
-    .menu-list__list-item:has(a[href*="order"]),
-    .menu-list__link:is([href="/"], [href*="home"], [href*="more"], [href*="founder"], [href*="order"]) {
-      display: none !important;
     }
   }
 
