@@ -1,0 +1,203 @@
+<!-- /sections/front-cover.liquid -->
+
+<div class="custom-hero-section">
+  <div class="custom-hero-container">
+    <div class="custom-hero-header">
+      <h1 class="custom-hero-main-title">How this actually works.</h1>
+      <p class="custom-hero-subtitle">Five minutes. How real resellers get their first flip.</p>
+    </div>
+
+    <div class="custom-video-wrapper">
+      <div class="custom-video-container" id="customVideoContainer">
+        <!-- Custom Play Button Overlay -->
+        <div class="custom-video-overlay" id="customVideoOverlay" onclick="playCustomVideo()">
+          <div class="custom-play-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <!-- YouTube Iframe -->
+        <iframe 
+          id="customYouTubeIframe"
+          src="https://www.youtube.com/embed/U25E4iR6REc?enablejsapi=1&rel=0" 
+          title="How this actually works" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="custom-reviews-wrapper">
+      <div class="custom-stars">★★★★★</div>
+      <p class="custom-reviews-text">4.8 out of 5 from over 500 buyer reviews</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  if (typeof window.playCustomVideo !== 'function') {
+    window.playCustomVideo = function() {
+      const container = document.getElementById('customVideoContainer');
+      const overlay = document.getElementById('customVideoOverlay');
+      const iframe = document.getElementById('customYouTubeIframe');
+      
+      if (container && iframe) {
+        overlay.style.display = 'none';
+        container.classList.add('playing');
+        iframe.src = "https://www.youtube.com/embed/U25E4iR6REc?autoplay=1&enablejsapi=1&rel=0";
+      }
+    };
+  }
+</script>
+
+{% stylesheet %}
+  .custom-hero-section {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    padding: 40px 20px 60px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .custom-hero-container {
+    max-width: 820px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .custom-hero-header {
+    margin-bottom: 18px;
+  }
+
+  .custom-hero-main-title {
+    color: #ffffff !important;
+    font-size: 3.6rem !important;
+    font-weight: 800 !important;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.65), 0 0 10px rgba(255, 255, 255, 0.4);
+    line-height: 1.1;
+  }
+
+  .custom-hero-subtitle {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1.4rem !important;
+    font-weight: 400 !important;
+    margin: 0;
+  }
+
+  .custom-video-wrapper {
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 18px;
+  }
+
+  .custom-video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px !important;
+    overflow: hidden;
+    background-color: #111111;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .custom-video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .custom-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://img.youtube.com/vi/U25E4iR6REc/maxresdefault.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .custom-video-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .custom-play-button {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    background-color: rgba(230, 230, 230, 0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .custom-video-overlay:hover .custom-play-button {
+    transform: scale(1.08);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  .custom-play-button svg {
+    fill: #000000 !important;
+    width: 26px;
+    height: 26px;
+    margin-left: 3px;
+  }
+
+  .custom-reviews-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .custom-stars {
+    color: #ffd700 !important;
+    font-size: 1.6rem !important;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  }
+
+  .custom-reviews-text {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1.4rem !important;
+    font-weight: 400 !important;
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Front Cover Hero",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Front Cover Hero",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %}
