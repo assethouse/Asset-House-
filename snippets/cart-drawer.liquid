@@ -6,7 +6,7 @@
   <div 
     id="CartDrawer" 
     class="cart-drawer__overlay" 
-    onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active');"
+    onclick="closeCartDrawer(this)"
   ></div>
   <div
     id="CartDrawer-Drawer"
@@ -23,7 +23,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); drawer.close?.();"
+          onclick="closeCartDrawer(this)"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -50,7 +50,7 @@
           type="button"
           class="cart-drawer__close"
           aria-label="{{ 'accessibility.close' | t }}"
-          onclick="const drawer = this.closest('cart-drawer'); drawer.removeAttribute('open'); drawer.classList.remove('active'); drawer.close?.();"
+          onclick="closeCartDrawer(this)"
         >
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close-bold" fill="none" viewBox="0 0 24 24">
             <path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"></path>
@@ -66,6 +66,36 @@
     {%- endif -%}
   </div>
 </cart-drawer>
+
+<script>
+  window.closeCartDrawer = function(element) {
+    const drawer = element.closest('cart-drawer');
+    if (drawer) {
+      drawer.removeAttribute('open');
+      drawer.classList.remove('active');
+      if (typeof drawer.close === 'function') {
+        drawer.close();
+      }
+    }
+    document.body.classList.remove('cart-open');
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cartTriggers = document.querySelectorAll('#cart-icon-bubble, a[href*="/cart"], .header__icon--cart, [data-cart-icon]');
+    const cartDrawer = document.querySelector('cart-drawer');
+
+    cartTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        if (cartDrawer) {
+          e.preventDefault();
+          cartDrawer.setAttribute('open', '');
+          cartDrawer.classList.add('active');
+          document.body.classList.add('cart-open');
+        }
+      });
+    });
+  });
+</script>
 
 {% stylesheet %}
   /* Pitch Black Cart Drawer Container - Hidden by default */
@@ -89,8 +119,10 @@
     transition: transform 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
   }
 
-  /* ONLY show cart drawer when cart-drawer has the open attribute */
-  cart-drawer[open] .cart-drawer__inner.custom-pitch-black-cart {
+  /* Show cart drawer when open attribute or active class is present */
+  cart-drawer[open] .cart-drawer__inner.custom-pitch-black-cart,
+  cart-drawer.active .cart-drawer__inner.custom-pitch-black-cart,
+  .cart-open cart-drawer .cart-drawer__inner.custom-pitch-black-cart {
     transform: translateX(0) !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -205,7 +237,9 @@
     display: none;
   }
 
-  cart-drawer[open] .cart-drawer__overlay {
+  cart-drawer[open] .cart-drawer__overlay,
+  cart-drawer.active .cart-drawer__overlay,
+  .cart-open cart-drawer .cart-drawer__overlay {
     display: block;
   }
 {% endstylesheet %}
