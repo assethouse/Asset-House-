@@ -265,10 +265,16 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "main_faq_K97JmC": {
+      "type": "main-faq",
+      "name": "Custom FAQ",
+      "settings": {}
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "main_faq_K97JmC"
   ]
 }
