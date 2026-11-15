@@ -1,0 +1,129 @@
+/* /assets/section-main-faq.css */
+
+.faq__section {
+  padding-top: var(--padding-lg);
+  padding-bottom: var(--padding-lg);
+}
+
+.faq__header {
+  margin-bottom: var(--margin-lg);
+}
+
+/* Color: Exact Bright, Bright Dark Blue (matching reference description) */
+.custom-faq-blue {
+  color: #0055ff !important;
+}
+
+.faq__subtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Typgraphy: Match bold, size, and weight of hamburger menu drawer */
+.custom-menu-bold {
+  font-weight: 600 !important;
+  font-size: 1.6rem !important;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.faq__title {
+  color: #ffffff !important;
+  font-size: 3.2rem !important;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+/* BOX DESIGN: Match outline, curvature, and background of upload 1 */
+.custom-faq-box-radius {
+  border-radius: 12px !important;
+}
+
+.custom-faq-box-bg {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.custom-faq-outline {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.faq-item {
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.faq-item__toggle {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 22px 20px;
+  text-align: left;
+}
+
+.faq-item__toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.faq-item__question {
+  max-width: 85%;
+}
+
+.faq-item__icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICON DESIGN: Match plus design, location, and bold weight of Upload 1. Color: Bright dark blue */
+.faq-item__icons svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Manage visible icons based on state */
+.faq-item__toggle[aria-expanded="false"] .icon-plus-bold {
+  display: block;
+}
+
+.faq-item__toggle[aria-expanded="false"] .icon-minus-bold {
+  display: none;
+}
+
+.faq-item__toggle[aria-expanded="true"] .icon-plus-bold {
+  display: none;
+}
+
+.faq-item__toggle[aria-expanded="true"] .icon-minus-bold {
+  display: block;
+}
+
+/* Answer content layout */
+.faq-item__answer-wrapper {
+  overflow: hidden;
+  transition: height 0.35s ease-out;
+}
+
+/* Typgraphy/Color: Exact font and light grey color from the cart menu subtitle */
+.custom-cart-empty-grey {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.faq-item__answer {
+  padding: 0 20px 24px 20px;
+  font-size: 1.4rem !important;
+  font-weight: 400;
+  line-height: 1.6;
+}
