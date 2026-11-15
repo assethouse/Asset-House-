@@ -379,16 +379,18 @@
 >
   <script>
     /**
-     * Forces desktop menu style ('menu') for all screens >= 480px. 
-     * This permanently keeps all iPads and tablets on the desktop layout, 
-     * even when entering full-screen video or rotating.
+     * Forces desktop menu style ('menu') for all iPads and tablets (detected via touch points 
+     * and iPad/Mac user agent) or screen widths >= 750px. 
+     * This permanently locks iPads into desktop layout regardless of fullscreen video or editor previews.
      */
     (function setHeaderMenuStyle() {
       const headerComponent = document.currentScript?.parentElement;
       if (!headerComponent) return;
 
-      const isDesktopWidth = window.innerWidth >= 480;
-      headerComponent.dataset.menuStyle = isDesktopWidth ? 'menu' : 'drawer';
+      const isIpadOrTablet = /iPad|Tablet/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isDesktopWidth = window.innerWidth >= 750;
+
+      headerComponent.dataset.menuStyle = (isIpadOrTablet || isDesktopWidth) ? 'menu' : 'drawer';
     })();
   </script>
   <div class="header__underlay header__underlay-closed"></div>
@@ -528,7 +530,7 @@
     display: none;
   }
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 750px) {
     #header-component[data-menu-style='menu'] :is(.header-menu, .dropdown-localization) {
       display: flex;
     }
@@ -538,7 +540,7 @@
     display: contents;
   }
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 750px) {
     #header-component[data-menu-style='menu'] .header__navigation-bar-row {
       display: none;
     }
@@ -794,7 +796,7 @@
     border-bottom: var(--border-bottom-width) solid var(--border-bottom-color, var(--color-border));
   }
 
-  @media screen and (max-width: 479px) {
+  @media screen and (max-width: 749px) {
     .header__row--top:not(.divider--page-width),
     .header__row--top.divider--page-width .header__columns {
       border-bottom-width: var(--border-bottom-width-mobile);
@@ -809,7 +811,7 @@
   }
 
   .header__row.divider--page-width:not(.section--page-width) .header__columns {
-    @media screen and (min-width: 480px) {
+    @media screen and (min-width: 750px) {
       padding-inline-start: 0;
       padding-inline-end: 0;
       margin-inline-start: var(--page-margin);
@@ -821,8 +823,8 @@
     display: flex;
     align-items: center;
 
-    /* on mobile (< 480px), header__column nodes are ignored to create mobile grid layout */
-    @media screen and (max-width: 479px) {
+    /* on mobile (< 750px), header__column nodes are ignored to create mobile grid layout */
+    @media screen and (max-width: 749px) {
       display: contents;
     }
   }
@@ -876,7 +878,7 @@
 
     /* If there is no center column, make the column the menu is in grow eagerly */
     &:where(:not(:has(.header__column--center))) {
-      @media screen and (min-width: 480px) {
+      @media screen and (min-width: 750px) {
         --header-template-columns: var(--header-left) var(--header-right);
 
         grid-template-areas: 'left right';
@@ -895,7 +897,7 @@
       }
     }
 
-    @media screen and (max-width: 479px) {
+    @media screen and (max-width: 749px) {
       --header-template-columns: 44px 1fr 44px 44px !important;
       grid-template-areas: 'leftA center rightA rightB' !important;
       grid-column: span 3;
@@ -933,7 +935,7 @@
 
   /* Mobile touch drawer layout override */
   #header-component[data-menu-style='drawer'] .header__columns {
-    @media screen and (max-width: 479px) {
+    @media screen and (max-width: 749px) {
       --header-template-columns: 44px 1fr 44px 44px !important;
       grid-template-areas: 'leftA center rightA rightB' !important;
       grid-column: span 3;
@@ -1246,7 +1248,7 @@
   }
 
   /* 2. Desktop & iPad Right Column Alignment */
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 750px) {
     .header__column--right {
       display: flex !important;
       align-items: center !important;
