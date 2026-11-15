@@ -1,0 +1,112 @@
+<!-- /sections/main-faq.liquid -->
+
+{{ 'section-main-faq.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign faq_items = 7
+-%}
+
+<div class="faq__section page-width">
+  <div class="faq__header text-center">
+    <span class="faq__subtitle custom-faq-blue">FAQ</span>
+    <h2 class="faq__title custom-menu-bold">Asked every day.</h2>
+  </div>
+
+  <div class="faq__content">
+    {%- for item in (1..faq_items) -%}
+      {%- liquid
+        assign question = ""
+        assign answer = ""
+        case item
+          when 1
+            assign question = "Are the suppliers included verified and active?"
+            assign answer = "Yes. We verify every single supplier pack monthly. Every supplier list we sell consists of active, verified, and reliable businesses. Our reputation depends on your success, so we take verification seriously."
+          when 2
+            assign question = "Are these suppliers open to new reselling partnerships?"
+            assign answer = "Absolutely. We only list suppliers that have open registration or application processes for new resell accounts. These businesses are looking for resellers just like you to move their stock."
+          when 3
+            assign question = "Do the suppliers deliver to the UK and international addresses?"
+            assign answer = "All suppliers listed ship reliably within the UK. Many also offer competitive international shipping rates to over 50 countries. Specific shipping details and regions covered are clearly indicated within each supplier profile."
+          when 4
+            assign question = "What happens if a supplier listed runs out of specific stock?"
+            assign answer = "Supplier stock levels are dynamic. If a supplier is temporarily out of a high-demand item, we will recommend alternative verified suppliers within the same pack that carry similar lines, ensuring your business stays stocked."
+          when 5
+            assign question = "Are the supplier profiles fully private to me?"
+            assign answer = "Once you purchase a supplier pack, that list is privately shared with you. While we do sell these lists to other customers, the specific details and your application to these suppliers are your private business information."
+          when 6
+            assign question = "Do I need a VAT or company registration to apply?"
+            assign answer = "The majority of suppliers in our packs are open to sole traders and individuals starting out. They do not all require VAT or official company registration for initial account setup, making them perfect for beginners."
+          when 7
+            assign question = "Do you help with the application process if I am rejected?"
+            assign answer = "We provide structured guidance and templates on how to approach these suppliers professionally. If you are rejected, we can review your application strategy to improve your chances with other verified suppliers in our network."
+        endcase
+      -%}
+
+      {%- if question != blank and answer != blank -%}
+        <div class="faq-item faq__row custom-faq-box-radius custom-faq-box-bg custom-faq-outline">
+          <button
+            class="faq-item__toggle h4"
+            type="button"
+            aria-controls="FaqItem-{{ section.id }}-{{ item }}"
+            aria-expanded="false"
+          >
+            <span class="faq-item__question custom-menu-bold custom-white wrap-text">
+              {{ question }}
+            </span>
+            <span class="faq-item__icons custom-faq-blue">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus-bold" fill="none" viewBox="0 0 24 24">
+                <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus-bold" fill="none" viewBox="0 0 24 24">
+                <path d="M4 12h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+              </svg>
+            </span>
+          </button>
+          <div id="FaqItem-{{ section.id }}-{{ item }}" class="faq-item__answer-wrapper" style="height: 0;">
+            <div class="faq-item__answer custom-cart-empty-grey wrap-text">
+              {{ answer }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqRows = document.querySelectorAll('.faq__row');
+
+    faqRows.forEach(row => {
+      const toggleButton = row.querySelector('.faq-item__toggle');
+      const answerWrapper = row.querySelector('.faq-item__answer-wrapper');
+
+      toggleButton.addEventListener('click', () => {
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+
+        // Set expanded attribute
+        toggleButton.setAttribute('aria-expanded', !isExpanded);
+
+        // Update height with transition
+        if (!isExpanded) {
+          answerWrapper.style.height = `${answerWrapper.scrollHeight}px`;
+        } else {
+          answerWrapper.style.height = '0px';
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Main FAQ",
+  "settings": [],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %}
