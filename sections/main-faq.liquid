@@ -1,110 +1,206 @@
 <!-- /sections/main-faq.liquid -->
 
-{{ 'section-main-faq.css' | asset_url | stylesheet_tag }}
+<div class="custom-faq-section">
+  <div class="custom-faq-container">
+    <div class="custom-faq-header">
+      <span class="custom-faq-tag">FAQ</span>
+      <h2 class="custom-faq-main-title">Asked every day.</h2>
+    </div>
 
-{%- liquid
-  assign faq_items = 7
--%}
+    <div class="custom-faq-list">
+      {%- assign faq_items = 7 -%}
+      {%- for item in (1..faq_items) -%}
+        {%- liquid
+          assign question = ""
+          assign answer = ""
+          case item
+            when 1
+              assign question = "Are the suppliers included verified and active?"
+              assign answer = "Yes. We verify every single supplier pack monthly. Every supplier list we sell consists of active, verified, and reliable businesses. Our reputation depends on your success, so we take verification seriously."
+            when 2
+              assign question = "Are these suppliers open to new reselling partnerships?"
+              assign answer = "Absolutely. We only list suppliers that have open registration or application processes for new resell accounts. These businesses are looking for resellers just like you to move their stock."
+            when 3
+              assign question = "Do the suppliers deliver to the UK and international addresses?"
+              assign answer = "All suppliers listed ship reliably within the UK. Many also offer competitive international shipping rates to over 50 countries. Specific shipping details and regions covered are clearly indicated within each supplier profile."
+            when 4
+              assign question = "What happens if a supplier listed runs out of specific stock?"
+              assign answer = "Supplier stock levels are dynamic. If a supplier is temporarily out of a high-demand item, we will recommend alternative verified suppliers within the same pack that carry similar lines, ensuring your business stays stocked."
+            when 5
+              assign question = "Are the supplier profiles fully private to me?"
+              assign answer = "Once you purchase a supplier pack, that list is privately shared with you. While we do sell these lists to other customers, the specific details and your application to these suppliers are your private business information."
+            when 6
+              assign question = "Do I need a VAT or company registration to apply?"
+              assign answer = "The majority of suppliers in our packs are open to sole traders and individuals starting out. They do not all require VAT or official company registration for initial account setup, making them perfect for beginners."
+            when 7
+              assign question = "Do you help with the application process if I am rejected?"
+              assign answer = "We provide structured guidance and templates on how to approach these suppliers professionally. If you are rejected, we can review your application strategy to improve your chances with other verified suppliers in our network."
+          endcase
+        -%}
 
-<div class="faq__section page-width">
-  <div class="faq__header text-center">
-    <span class="faq__subtitle custom-faq-blue">FAQ</span>
-    <h2 class="faq__title custom-menu-bold">Asked every day.</h2>
-  </div>
-
-  <div class="faq__content">
-    {%- for item in (1..faq_items) -%}
-      {%- liquid
-        assign question = ""
-        assign answer = ""
-        case item
-          when 1
-            assign question = "Are the suppliers included verified and active?"
-            assign answer = "Yes. We verify every single supplier pack monthly. Every supplier list we sell consists of active, verified, and reliable businesses. Our reputation depends on your success, so we take verification seriously."
-          when 2
-            assign question = "Are these suppliers open to new reselling partnerships?"
-            assign answer = "Absolutely. We only list suppliers that have open registration or application processes for new resell accounts. These businesses are looking for resellers just like you to move their stock."
-          when 3
-            assign question = "Do the suppliers deliver to the UK and international addresses?"
-            assign answer = "All suppliers listed ship reliably within the UK. Many also offer competitive international shipping rates to over 50 countries. Specific shipping details and regions covered are clearly indicated within each supplier profile."
-          when 4
-            assign question = "What happens if a supplier listed runs out of specific stock?"
-            assign answer = "Supplier stock levels are dynamic. If a supplier is temporarily out of a high-demand item, we will recommend alternative verified suppliers within the same pack that carry similar lines, ensuring your business stays stocked."
-          when 5
-            assign question = "Are the supplier profiles fully private to me?"
-            assign answer = "Once you purchase a supplier pack, that list is privately shared with you. While we do sell these lists to other customers, the specific details and your application to these suppliers are your private business information."
-          when 6
-            assign question = "Do I need a VAT or company registration to apply?"
-            assign answer = "The majority of suppliers in our packs are open to sole traders and individuals starting out. They do not all require VAT or official company registration for initial account setup, making them perfect for beginners."
-          when 7
-            assign question = "Do you help with the application process if I am rejected?"
-            assign answer = "We provide structured guidance and templates on how to approach these suppliers professionally. If you are rejected, we can review your application strategy to improve your chances with other verified suppliers in our network."
-        endcase
-      -%}
-
-      {%- if question != blank and answer != blank -%}
-        <div class="faq-item faq__row custom-faq-box-radius custom-faq-box-bg custom-faq-outline">
-          <button
-            class="faq-item__toggle h4"
-            type="button"
-            aria-controls="FaqItem-{{ section.id }}-{{ item }}"
-            aria-expanded="false"
-          >
-            <span class="faq-item__question custom-menu-bold custom-white wrap-text">
-              {{ question }}
-            </span>
-            <span class="faq-item__icons custom-faq-blue">
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus-bold" fill="none" viewBox="0 0 24 24">
-                <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus-bold" fill="none" viewBox="0 0 24 24">
-                <path d="M4 12h16" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
-              </svg>
+        <div class="custom-faq-item">
+          <button class="custom-faq-question-btn" type="button" aria-expanded="false">
+            <span class="custom-faq-question-text">{{ question }}</span>
+            <span class="custom-faq-icon">
+              <svg class="icon-plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </span>
           </button>
-          <div id="FaqItem-{{ section.id }}-{{ item }}" class="faq-item__answer-wrapper" style="height: 0;">
-            <div class="faq-item__answer custom-cart-empty-grey wrap-text">
-              {{ answer }}
-            </div>
+          <div class="custom-faq-answer-container">
+            <div class="custom-faq-answer-text">{{ answer }}</div>
           </div>
         </div>
-      {%- endif -%}
-    {%- endfor -%}
+      {%- endfor -%}
+    </div>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const faqRows = document.querySelectorAll('.faq__row');
+    const faqButtons = document.querySelectorAll('.custom-faq-question-btn');
+    faqButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.custom-faq-item');
+        const answerContainer = item.querySelector('.custom-faq-answer-container');
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
-    faqRows.forEach(row => {
-      const toggleButton = row.querySelector('.faq-item__toggle');
-      const answerWrapper = row.querySelector('.faq-item__answer-wrapper');
+        // Close other open items
+        faqButtons.forEach(otherBtn => {
+          if (otherBtn !== btn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.closest('.custom-faq-item').querySelector('.custom-faq-answer-container').style.maxHeight = null;
+          }
+        });
 
-      toggleButton.addEventListener('click', () => {
-        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
-
-        // Set expanded attribute
-        toggleButton.setAttribute('aria-expanded', !isExpanded);
-
-        // Update height with transition
+        // Toggle current item
         if (!isExpanded) {
-          answerWrapper.style.height = `${answerWrapper.scrollHeight}px`;
+          btn.setAttribute('aria-expanded', 'true');
+          answerContainer.style.maxHeight = answerContainer.scrollHeight + 'px';
         } else {
-          answerWrapper.style.height = '0px';
+          btn.setAttribute('aria-expanded', 'false');
+          answerContainer.style.maxHeight = null;
         }
       });
     });
   });
 </script>
 
+{% stylesheet %}
+  .custom-faq-section {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    padding: 60px 20px;
+    width: 100%;
+  }
+
+  .custom-faq-container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .custom-faq-header {
+    text-align: center;
+    margin-bottom: 45px;
+  }
+
+  .custom-faq-tag {
+    display: block;
+    color: #0055ff !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .custom-faq-main-title {
+    color: #ffffff !important;
+    font-size: 3.4rem !important;
+    font-weight: 700 !important;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .custom-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .custom-faq-item {
+    background-color: #000000 !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 9999px !important;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .custom-faq-question-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff !important;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .custom-faq-question-text {
+    color: #ffffff !important;
+  }
+
+  .custom-faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  .custom-faq-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .custom-faq-question-btn[aria-expanded="false"] .icon-close {
+    display: none;
+  }
+  .custom-faq-question-btn[aria-expanded="true"] .icon-plus {
+    display: none;
+  }
+
+  .custom-faq-answer-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 26px;
+  }
+
+  .custom-faq-question-btn[aria-expanded="true"] + .custom-faq-answer-container {
+    padding-bottom: 24px;
+  }
+
+  .custom-faq-answer-text {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1.4rem !important;
+    font-weight: 400 !important;
+    line-height: 1.6;
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
-  "name": "Main FAQ",
+  "name": "Custom FAQ",
   "settings": [],
   "presets": [
     {
-      "name": "FAQ Section",
+      "name": "Custom FAQ",
       "category": "Custom Content"
     }
   ]
