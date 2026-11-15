@@ -203,7 +203,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "text_color": "{{ settings.color_palette.foreground }}",
+                "text_color": "{{ settings.color_palette.background }}",
                 "background": true,
                 "background_color": "#00000026",
                 "corner_radius": 0,
