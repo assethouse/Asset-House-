@@ -1050,8 +1050,8 @@
   }
 
   /* ==========================================================
-     CUSTOM HEADER OVERRIDES: Remove Account, Position Search Next to Cart, 
-     Make Headings Bolder, Hide Unwanted Menu Items on iPad & Desktop
+     CUSTOM HEADER OVERRIDES: Centered Menu, Search Next to Cart, 
+     Bold Headings, Remove Home & Account & GBP on iPad & Desktop
      ========================================================== */
 
   /* 1. Completely hide the human/account icon */
@@ -1062,46 +1062,74 @@
     display: none !important;
   }
 
-  /* 2. iPad & Desktop Right Column: Position Search Bar Next to Cart & Remove Left Search */
+  /* 2. iPad & Desktop Layout (min-width: 480px) */
   @media screen and (min-width: 480px) {
-    /* Hide search icon if it appears on the left/center columns */
-    .header__column--left .search-action,
-    .header__column--center .search-action,
-    .header__column--left .header__icon--search,
-    .header__column--center .header__icon--search {
-      display: none !important;
+    /* Force 3-column grid layout: Logo (left), Centered Menu (center), Search + Cart (right) */
+    .header__columns {
+      display: grid !important;
+      grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr) !important;
+      grid-template-areas: 'left center right' !important;
+      align-items: center !important;
+      width: 100% !important;
+    }
+
+    .header__column--left {
+      grid-area: left !important;
+      justify-content: flex-start !important;
+    }
+
+    .header__column--center {
+      grid-area: center !important;
+      justify-content: center !important;
+      display: flex !important;
+      width: 100% !important;
     }
 
     .header__column--right {
+      grid-area: right !important;
+      justify-content: flex-end !important;
       display: flex !important;
       align-items: center !important;
       gap: 16px !important;
-      justify-content: flex-end !important;
     }
 
-    /* Ensure search action and header actions sit side by side in right column */
-    .search-action {
+    /* Center the menu list items explicitly */
+    header-menu,
+    .overflow-menu,
+    .overflow-menu::part(list),
+    .menu-list {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      margin: 0 auto !important;
+    }
+
+    /* Ensure search bar icon is visible and positioned in the right column */
+    .search-action,
+    .header__icon--search,
+    .search-action__button {
       display: flex !important;
       align-items: center !important;
+      justify-content: center !important;
+      opacity: 1 !important;
+      visibility: visible !important;
       margin: 0 !important;
-      order: 1 !important;
     }
 
     header-actions {
       display: flex !important;
       align-items: center !important;
       margin: 0 !important;
-      order: 2 !important;
     }
 
-    /* 3. Make Navigation Headings (Shop, etc.) Bolder */
+    /* 3. Make Navigation Headings Bolder */
     .menu-list__link,
     .menu-list__list-item a,
     header-menu a {
       font-weight: 700 !important;
     }
 
-    /* 4. Remove unwanted menu items on iPad & Desktop: Home, More, Founder's Journey, Find My Order */
+    /* 4. Remove unwanted menu items: Home, More, Founder's Journey, Find My Order */
     .menu-list__list-item:has(a[href="/"]),
     .menu-list__list-item:has(a[href*="home"]),
     .menu-list__list-item:has(a[href*="more"]),
