@@ -108,11 +108,10 @@
     </div>
 
   </div>
-</footer>
+</section>
 
 <style>
-  #shopify-section-{{ section.id }},
-  .vr-footer-section {
+  #shopify-section-{{ section.id }} .vr-footer-section {
     background-color: #000000 !important;
     width: 100% !important;
     margin: 0 !important;
@@ -121,9 +120,10 @@
     font-family: inherit !important;
     box-sizing: border-box !important;
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: block !important;
   }
 
-  .vr-footer-container {
+  #shopify-section-{{ section.id }} .vr-footer-container {
     max-width: 1400px !important;
     margin: 0 auto !important;
     display: flex !important;
@@ -131,46 +131,46 @@
     gap: 40px !important;
   }
 
-  .vr-footer-grid {
+  #shopify-section-{{ section.id }} .vr-footer-grid {
     display: grid !important;
     grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr !important;
     gap: 30px !important;
   }
 
   @media screen and (max-width: 1024px) {
-    .vr-footer-grid {
+    #shopify-section-{{ section.id }} .vr-footer-grid {
       grid-template-columns: 1fr 1fr 1fr !important;
       gap: 40px 20px !important;
     }
   }
 
   @media screen and (max-width: 640px) {
-    .vr-footer-grid {
+    #shopify-section-{{ section.id }} .vr-footer-grid {
       grid-template-columns: 1fr !important;
       gap: 35px !important;
     }
   }
 
-  .vr-footer-brand-col {
+  #shopify-section-{{ section.id }} .vr-footer-brand-col {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 12px !important;
   }
 
-  .vr-footer-logo-wrap {
+  #shopify-section-{{ section.id }} .vr-footer-logo-wrap {
     height: 32px !important;
     display: flex !important;
     align-items: center !important;
   }
 
-  .vr-footer-logo {
+  #shopify-section-{{ section.id }} .vr-footer-logo {
     height: 32px !important;
     width: auto !important;
     object-fit: contain !important;
   }
 
-  .vr-footer-slogan {
+  #shopify-section-{{ section.id }} .vr-footer-slogan {
     color: #9ca3af !important;
     font-size: 0.9rem !important;
     font-weight: 500 !important;
@@ -178,28 +178,28 @@
     line-height: 1.4 !important;
   }
 
-  .vr-footer-rating-box {
+  #shopify-section-{{ section.id }} .vr-footer-rating-box {
     display: flex !important;
     flex-direction: column !important;
     gap: 4px !important;
     margin: 4px 0 !important;
   }
 
-  .vr-footer-stars {
+  #shopify-section-{{ section.id }} .vr-footer-stars {
     color: #FFD700 !important;
     font-size: 1.1rem !important;
     letter-spacing: 2px !important;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4) !important;
   }
 
-  .vr-footer-rating-text {
+  #shopify-section-{{ section.id }} .vr-footer-rating-text {
     color: #9ca3af !important;
     font-size: 0.85rem !important;
     margin: 0 !important;
     font-weight: 500 !important;
   }
 
-  .vr-footer-tiktok-link {
+  #shopify-section-{{ section.id }} .vr-footer-tiktok-link {
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
@@ -211,21 +211,21 @@
     transition: color 0.2s ease !important;
   }
 
-  .vr-footer-tiktok-link:hover {
+  #shopify-section-{{ section.id }} .vr-footer-tiktok-link:hover {
     color: #ffffff !important;
   }
 
-  .vr-tiktok-icon {
+  #shopify-section-{{ section.id }} .vr-tiktok-icon {
     stroke: #9ca3af !important;
   }
 
-  .vr-footer-col {
+  #shopify-section-{{ section.id }} .vr-footer-col {
     display: flex !important;
     flex-direction: column !important;
     gap: 14px !important;
   }
 
-  .vr-footer-heading {
+  #shopify-section-{{ section.id }} .vr-footer-heading {
     color: #ffffff !important;
     font-size: 0.9rem !important;
     font-weight: 800 !important;
@@ -234,8 +234,9 @@
     margin: 0 !important;
   }
 
-  .vr-footer-links {
+  #shopify-section-{{ section.id }} .vr-footer-links {
     list-style: none !important;
+    list-style-type: none !important;
     padding: 0 !important;
     margin: 0 !important;
     display: flex !important;
@@ -243,7 +244,19 @@
     gap: 10px !important;
   }
 
-  .vr-footer-links li a {
+  #shopify-section-{{ section.id }} .vr-footer-links li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .vr-footer-links li::marker {
+    display: none !important;
+    content: "" !important;
+  }
+
+  #shopify-section-{{ section.id }} .vr-footer-links li a {
     color: #9ca3af !important;
     text-decoration: none !important;
     font-size: 0.88rem !important;
@@ -251,11 +264,11 @@
     transition: color 0.2s ease !important;
   }
 
-  .vr-footer-links li a:hover {
+  #shopify-section-{{ section.id }} .vr-footer-links li a:hover {
     color: #ffffff !important;
   }
 
-  .vr-footer-trust-bar {
+  #shopify-section-{{ section.id }} .vr-footer-trust-bar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -266,32 +279,32 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
 
-  .vr-trust-left {
+  #shopify-section-{{ section.id }} .vr-trust-left {
     display: flex !important;
     align-items: center !important;
     flex-wrap: wrap !important;
     gap: 24px !important;
   }
 
-  .vr-secure-checkout {
+  #shopify-section-{{ section.id }} .vr-secure-checkout {
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
   }
 
-  .vr-secure-text {
+  #shopify-section-{{ section.id }} .vr-secure-text {
     color: #ffffff !important;
     font-size: 0.88rem !important;
     font-weight: 700 !important;
   }
 
-  .vr-guarantee-badge-wrap {
+  #shopify-section-{{ section.id }} .vr-guarantee-badge-wrap {
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
   }
 
-  .vr-crest-badge {
+  #shopify-section-{{ section.id }} .vr-crest-badge {
     width: 22px !important;
     height: 22px !important;
     background-color: #1b3a6b !important;
@@ -301,20 +314,20 @@
     justify-content: center !important;
   }
 
-  .vr-guarantee-text {
+  #shopify-section-{{ section.id }} .vr-guarantee-text {
     color: #3b82f6 !important;
     font-size: 0.88rem !important;
     font-weight: 700 !important;
   }
 
-  .vr-trust-right {
+  #shopify-section-{{ section.id }} .vr-trust-right {
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
     flex-wrap: wrap !important;
   }
 
-  .vr-payment-pill {
+  #shopify-section-{{ section.id }} .vr-payment-pill {
     background-color: #ffffff !important;
     color: #000000 !important;
     font-size: 0.75rem !important;
@@ -328,18 +341,18 @@
     box-sizing: border-box !important;
   }
 
-  .vr-pill-visa {
+  #shopify-section-{{ section.id }} .vr-pill-visa {
     color: #2563eb !important;
     letter-spacing: 0.5px !important;
   }
 
-  .vr-pill-mastercard {
+  #shopify-section-{{ section.id }} .vr-pill-mastercard {
     background-color: #ffffff !important;
     width: 42px !important;
     padding: 0 !important;
   }
 
-  .mc-circles {
+  #shopify-section-{{ section.id }} .mc-circles {
     position: relative !important;
     width: 24px !important;
     height: 14px !important;
@@ -348,7 +361,7 @@
     align-items: center !important;
   }
 
-  .mc-red {
+  #shopify-section-{{ section.id }} .mc-red {
     position: absolute !important;
     left: 0 !important;
     width: 14px !important;
@@ -358,7 +371,7 @@
     opacity: 0.85 !important;
   }
 
-  .mc-orange {
+  #shopify-section-{{ section.id }} .mc-orange {
     position: absolute !important;
     right: 0 !important;
     width: 14px !important;
@@ -368,18 +381,18 @@
     opacity: 0.85 !important;
   }
 
-  .vr-pill-amex {
+  #shopify-section-{{ section.id }} .vr-pill-amex {
     background-color: #2563eb !important;
     color: #ffffff !important;
   }
 
-  .vr-footer-disclaimer {
+  #shopify-section-{{ section.id }} .vr-footer-disclaimer {
     display: flex !important;
     flex-direction: column !important;
     gap: 12px !important;
   }
 
-  .vr-footer-disclaimer p {
+  #shopify-section-{{ section.id }} .vr-footer-disclaimer p {
     color: #8e8e93 !important;
     font-size: 0.78rem !important;
     line-height: 1.5 !important;
@@ -387,7 +400,7 @@
     font-weight: 400 !important;
   }
 
-  .vr-copyright {
+  #shopify-section-{{ section.id }} .vr-copyright {
     color: #8e8e93 !important;
     font-weight: 500 !important;
     margin-top: 4px !important;
