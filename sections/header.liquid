@@ -841,115 +841,9 @@
   }
 
   .header__columns {
-    --header-left: 1fr;
-    --header-center: auto;
-    --header-right: 1fr;
-    --header-template-columns: var(--header-left) var(--header-center) var(--header-right);
-    --header-mobile-bookend: 44px;
-
     display: grid;
-    grid-template-areas: 'left center right';
+    grid-template-columns: 1fr auto 1fr;
     grid-gap: var(--gap-xl);
-    grid-template-columns: var(--header-template-columns);
-
-    &:has(.header__column--center header-menu) {
-      --header-center: auto;
-      --header-left: minmax(max-content, 1fr);
-      --header-right: minmax(max-content, 1fr);
-    }
-
-    &:where(:not(:has(.header__column--center))) {
-      @media screen and (min-width: 480px) {
-        --header-template-columns: var(--header-left) var(--header-right);
-        grid-template-areas: 'left right';
-      }
-
-      &:has(.header__column--right header-menu) {
-        --header-right: auto;
-        --header-left: minmax(max-content, 1fr);
-      }
-
-      &:has(.header__column--left header-menu) {
-        --header-left: auto;
-        --header-right: minmax(max-content, 1fr);
-      }
-    }
-
-    @media screen and (max-width: 479px) {
-      --header-template-columns: 44px 1fr 44px 44px !important;
-      grid-template-areas: 'leftA center rightA rightB' !important;
-      grid-column: span 3;
-      column-gap: 0 !important;
-      align-items: center !important;
-      padding-block: 0;
-      padding-inline: var(--page-margin);
-
-      .header-logo {
-        grid-area: center !important;
-        justify-self: center !important;
-      }
-
-      .header__icon--menu {
-        grid-area: leftA !important;
-        justify-self: start !important;
-        padding-inline: 0 !important;
-      }
-
-      .search-action {
-        grid-area: rightA !important;
-        display: flex !important;
-        justify-self: center !important;
-        align-items: center !important;
-      }
-
-      header-actions {
-        grid-area: rightB !important;
-        display: flex !important;
-        justify-self: end !important;
-        align-items: center !important;
-      }
-    }
-  }
-
-  #header-component[data-menu-style='drawer'] .header__columns {
-    @media screen and (max-width: 479px) {
-      --header-template-columns: 44px 1fr 44px 44px !important;
-      grid-template-areas: 'leftA center rightA rightB' !important;
-      grid-column: span 3;
-      column-gap: 0 !important;
-      align-items: center !important;
-      padding-block: 0;
-      padding-inline: var(--page-margin);
-
-      .header-logo {
-        grid-area: center !important;
-        justify-self: center !important;
-      }
-
-      .header__icon--menu {
-        grid-area: leftA !important;
-        justify-self: start !important;
-        padding-inline: 0 !important;
-      }
-
-      .search-action {
-        grid-area: rightA !important;
-        display: flex !important;
-        justify-self: center !important;
-        align-items: center !important;
-      }
-
-      header-actions {
-        grid-area: rightB !important;
-        display: flex !important;
-        justify-self: end !important;
-        align-items: center !important;
-      }
-    }
-  }
-
-  .header__columns:not(:has(.header__column)) {
-    grid-template-columns: 1fr;
   }
 
   @media (hover: hover) {
@@ -1050,11 +944,13 @@
   }
 
   /* ==========================================================
-     CUSTOM HEADER OVERRIDES: Centered Menu, EXACTLY ONE Search Bar Next to Cart, 
-     Bold Headings, Remove Home & Account & GBP on iPad & Desktop
+     FINAL BULLETPROOF HEADER OVERRIDES:
+     - Logo on Left (Order 1)
+     - 5 Headings DEAD-CENTERED (Order 2)
+     - Search Bar & Cart on Right, Side-by-Side (Order 3)
      ========================================================== */
 
-  /* 1. Completely hide the human/account icon */
+  /* 1. Completely hide account icon */
   .header__icon--account,
   .account-button,
   shopify-account,
@@ -1062,48 +958,44 @@
     display: none !important;
   }
 
-  /* 2. Hide duplicate/extra search bars everywhere except the right column */
+  /* 2. Hide any extra/duplicate search bars */
   .search-action--hidden-on-menu,
-  .header__column--left .search-action,
-  .header__column--center .search-action,
   .header__row--bottom .search-action {
     display: none !important;
   }
 
   /* 3. iPad & Desktop Layout (min-width: 480px) */
   @media screen and (min-width: 480px) {
-    /* Force 3-column grid layout: Logo (left), Centered Menu (center), Search + Cart (right) */
+    /* Use Flexbox for foolproof column ordering and alignment */
     .header__columns {
-      display: grid !important;
-      grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr) !important;
-      grid-template-areas: 'left center right' !important;
+      display: flex !important;
+      justify-content: space-between !important;
       align-items: center !important;
       width: 100% !important;
+      padding-inline: var(--page-margin) !important;
     }
 
-    .header__column--left {
-      grid-area: left !important;
+    /* Left: Logo */
+    .header__column--left,
+    .header-logo {
+      order: 1 !important;
+      flex: 0 0 auto !important;
+      display: flex !important;
       justify-content: flex-start !important;
-    }
-
-    .header__column--center {
-      grid-area: center !important;
-      justify-content: center !important;
-      display: flex !important;
-      width: 100% !important;
-    }
-
-    .header__column--right {
-      grid-area: right !important;
-      justify-content: flex-end !important;
-      display: flex !important;
       align-items: center !important;
-      gap: 16px !important;
     }
 
-    /* Center the menu list items explicitly */
+    /* Center: The 5 Headings (Shop, How it works, £1,000 guarantee, FAQ, Contact) */
+    .header__column--center,
     header-menu,
-    .overflow-menu,
+    .overflow-menu {
+      order: 2 !important;
+      flex: 1 1 auto !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
     .overflow-menu::part(list),
     .menu-list {
       display: flex !important;
@@ -1112,8 +1004,19 @@
       margin: 0 auto !important;
     }
 
-    /* Ensure ONLY ONE search action is visible and positioned in the right column next to cart */
-    .header__column--right .search-action {
+    /* Right: Search Bar + Cart (Side-by-side) */
+    .header__column--right {
+      order: 3 !important;
+      flex: 0 0 auto !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 16px !important;
+    }
+
+    /* Guarantee Search Bar Appears Right Next to Cart */
+    .header__column--right .search-action,
+    .search-action {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -1123,21 +1026,22 @@
       order: 1 !important;
     }
 
-    .header__column--right header-actions {
+    .header__column--right header-actions,
+    header-actions {
       display: flex !important;
       align-items: center !important;
       margin: 0 !important;
       order: 2 !important;
     }
 
-    /* 4. Make Navigation Headings Bolder */
+    /* Bold Navigation Headings */
     .menu-list__link,
     .menu-list__list-item a,
     header-menu a {
       font-weight: 700 !important;
     }
 
-    /* 5. Remove unwanted menu items: Home, More, Founder's Journey, Find My Order */
+    /* Remove unwanted menu items: Home, More, Founder's Journey, Find My Order */
     .menu-list__list-item:has(a[href="/"]),
     .menu-list__list-item:has(a[href*="home"]),
     .menu-list__list-item:has(a[href*="more"]),
@@ -1148,7 +1052,7 @@
     }
   }
 
-  /* 6. Replace cart icon with your custom image (IMG_2324.png), perfectly sized */
+  /* 4. Replace cart icon with your custom image (IMG_2324.png) */
   .header__icon--cart,
   #cart-icon-bubble,
   .header-actions__action--cart {
@@ -1164,7 +1068,7 @@
     justify-content: center !important;
   }
 
-  /* Hide default cart SVG while keeping cart count badge visible and active */
+  /* Hide default cart SVG while keeping cart badge active */
   .header__icon--cart > svg,
   #cart-icon-bubble > svg,
   .header-actions__action--cart > svg,
@@ -1175,7 +1079,7 @@
     visibility: hidden !important;
   }
 
-  /* Search icon and cart icon size harmony */
+  /* Search & cart icon size harmony */
   .header__icon--search,
   .search-action__button {
     width: 24px !important;
