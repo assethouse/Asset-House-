@@ -1,6 +1,9 @@
 {% liquid
-  # Simplified order with drawer_search completely removed to prevent left-side duplicates
-  assign order = 'logo,menu,localization,search,actions'
+  assign order = 'logo,menu,localization,search,drawer_search,actions'
+
+  if shop.customer_accounts_enabled
+    assign order = 'drawer_search,logo,menu,localization,search,actions'
+  endif
 
   assign rows = 'top,bottom' | split: ','
   assign search_style = 'none'
@@ -100,12 +103,52 @@
     render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
   endcapture
 
+  if shop.customer_accounts_enabled
+    assign search_class = 'search-action--hidden-on-drawer'
+  endif
+
+  # Handle localization positioning
+  if section.settings.localization_position == 'left'
+    if section.settings.search_position == 'left'
+      if shop.customer_accounts_enabled
+        assign order = 'drawer_search,logo,search,localization,menu,actions'
+      else
+        assign order = 'logo,search,localization,menu,drawer_search,actions'
+      endif
+    else
+      if shop.customer_accounts_enabled
+        assign order = 'drawer_search,logo,localization,menu,search,actions'
+      else
+        assign order = 'logo,localization,menu,search,drawer_search,actions'
+      endif
+    endif
+  else
+    if section.settings.search_position == 'left'
+      if shop.customer_accounts_enabled
+        assign order = 'drawer_search,logo,search,menu,localization,actions'
+      else
+        assign order = 'logo,search,menu,localization,drawer_search,actions'
+      endif
+    endif
+  endif
   capture search
     render 'search', style: search_style, class: search_class, display_style: section.settings.actions_display_style
   endcapture
 
-  # Drawer search disabled to prevent duplicate left-side search icon
-  assign drawer_search = ''
+  # Skip drawer search under specific conditions:
+  # Always render if search_row is bottom
+  # Don't render when shop.customer_accounts_enabled is false and search_position is left and search_style is not none
+  assign skip_drawer_search = false
+  if shop.customer_accounts_enabled == false and section.settings.search_position == 'left' and search_style != 'none'
+    assign skip_drawer_search = true
+  endif
+
+  if section.settings.search_row == 'bottom' or search_style != 'none' and skip_drawer_search == false
+    # Mobile search duplicate for when search is not in the right order for mobile layout
+    capture drawer_search
+      render 'search', class: 'search-action--hidden-on-menu', style: search_style, display_style: section.settings.actions_display_style
+    endcapture
+  endif
 
   assign show_language = section.settings.show_language
   if localization.available_languages.size <= 1
@@ -287,7 +330,7 @@
     "name": {{ shop.name | json }},
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-    % endif %}
+    {% endif %}
     "url": {{ request.origin | append: page.url | json }}
   }
 </script>
@@ -901,14 +944,13 @@
   }
 
   /* ==========================================================
-     FINAL CLEAN HEADER OVERRIDES:
-     - Completely hide account icon
-     - Hide ANY search bar remaining on the left side
+     FINAL BULLETPROOF HEADER OVERRIDES:
      - Logo on Left (Order 1)
      - 5 Headings DEAD-CENTERED (Order 2)
-     - Single Search Bar + Custom Cart Side-by-Side on Right (Order 3)
+     - Search Bar & Cart on Right, Side-by-Side (Order 3)
      ========================================================== */
 
+  /* 1. Completely hide account icon */
   .header__icon--account,
   .account-button,
   shopify-account,
@@ -916,14 +958,15 @@
     display: none !important;
   }
 
-  /* Forcefully remove any search icon that tries to stay on the left */
-  .header__column--left .search-action,
-  .header__column--center .search-action,
-  .search-action--hidden-on-menu {
+  /* 2. Hide any extra/duplicate search bars */
+  .search-action--hidden-on-menu,
+  .header__row--bottom .search-action {
     display: none !important;
   }
 
+  /* 3. iPad & Desktop Layout (min-width: 480px) */
   @media screen and (min-width: 480px) {
+    /* Use Flexbox for foolproof column ordering and alignment */
     .header__columns {
       display: flex !important;
       justify-content: space-between !important;
@@ -942,7 +985,7 @@
       align-items: center !important;
     }
 
-    /* Center: 5 Headings DEAD-CENTERED */
+    /* Center: The 5 Headings (Shop, How it works, £1,000 guarantee, FAQ, Contact) */
     .header__column--center,
     header-menu,
     .overflow-menu {
@@ -961,7 +1004,7 @@
       margin: 0 auto !important;
     }
 
-    /* Right: Single Search Bar + Cart Side-by-Side */
+    /* Right: Search Bar + Cart (Side-by-side) */
     .header__column--right {
       order: 3 !important;
       flex: 0 0 auto !important;
@@ -971,6 +1014,7 @@
       gap: 16px !important;
     }
 
+    /* Guarantee Search Bar Appears Right Next to Cart */
     .header__column--right .search-action,
     .search-action {
       display: flex !important;
@@ -996,9 +1040,19 @@
     header-menu a {
       font-weight: 700 !important;
     }
+
+    /* Remove unwanted menu items: Home, More, Founder's Journey, Find My Order */
+    .menu-list__list-item:has(a[href="/"]),
+    .menu-list__list-item:has(a[href*="home"]),
+    .menu-list__list-item:has(a[href*="more"]),
+    .menu-list__list-item:has(a[href*="founder"]),
+    .menu-list__list-item:has(a[href*="order"]),
+    .menu-list__link:is([href="/"], [href*="home"], [href*="more"], [href*="founder"], [href*="order"]) {
+      display: none !important;
+    }
   }
 
-  /* Custom Cart Image Replacement (IMG_2324.png) */
+  /* 4. Replace cart icon with your custom image (IMG_2324.png) */
   .header__icon--cart,
   #cart-icon-bubble,
   .header-actions__action--cart {
@@ -1014,6 +1068,7 @@
     justify-content: center !important;
   }
 
+  /* Hide default cart SVG while keeping cart badge active */
   .header__icon--cart > svg,
   #cart-icon-bubble > svg,
   .header-actions__action--cart > svg,
@@ -1024,6 +1079,7 @@
     visibility: hidden !important;
   }
 
+  /* Search & cart icon size harmony */
   .header__icon--search,
   .search-action__button {
     width: 24px !important;
