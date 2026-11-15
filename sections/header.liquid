@@ -538,8 +538,9 @@
     #header-component .header-menu {
       display: flex !important;
     }
-    /* Hide localization / GBP dropdown on iPad and Desktop */
-    #header-component .dropdown-localization {
+    /* Hide localization/GBP selector on iPad & Desktop */
+    #header-component .dropdown-localization,
+    #header-component dropdown-localization-component {
       display: none !important;
     }
     #header-component .header__icon--menu,
@@ -830,7 +831,7 @@
   }
 
   .header__column--right {
-    gap: var(--gap-xl);
+    gap: 14px !important;
     justify-content: flex-end;
     grid-area: right;
 
@@ -1049,10 +1050,11 @@
   }
 
   /* ==========================================================
-     CUSTOM HEADER OVERRIDES & DESKTOP/IPAD FIXES
+     CUSTOM HEADER OVERRIDES: Remove Account, Position Search Next to Cart, 
+     Make Headings Bolder, Hide Unwanted Menu Items on iPad & Desktop
      ========================================================== */
 
-  /* 1. Hide account icon everywhere */
+  /* 1. Completely hide the human/account icon */
   .header__icon--account,
   .account-button,
   shopify-account,
@@ -1060,7 +1062,7 @@
     display: none !important;
   }
 
-  /* 2. Desktop & iPad Right Column Layout: Search right next to Cart */
+  /* 2. iPad & Desktop Right Column: Position Search Bar Next to Cart */
   @media screen and (min-width: 480px) {
     .header__column--right {
       display: flex !important;
@@ -1069,44 +1071,37 @@
       justify-content: flex-end !important;
     }
 
-    /* Force search action and cart action side by side */
-    .header__column--right .search-action {
+    /* Ensure search action and header actions sit side by side */
+    .search-action {
       display: flex !important;
       align-items: center !important;
-      order: 1 !important;
       margin: 0 !important;
     }
 
-    .header__column--right header-actions {
+    header-actions {
       display: flex !important;
       align-items: center !important;
-      order: 2 !important;
       margin: 0 !important;
     }
-  }
 
-  /* 3. Hide Unwanted Nav Links on Desktop & iPad (Home, More, Founders Journey, Find My Order) */
-  @media screen and (min-width: 480px) {
-    .menu-list__list-item:has(a:is([href*="home"], [href*="more"], [href*="founder"], [href*="order"])),
-    .menu-list__list-item:has(a:contains("Home")),
-    .menu-list__list-item:has(a:contains("More")),
-    .menu-list__list-item:has(a:contains("Founders")),
-    .menu-list__list-item:has(a:contains("Find My Order")) {
+    /* 3. Make Navigation Headings (Shop, etc.) Bolder */
+    .menu-list__link,
+    .menu-list__list-item a,
+    header-menu a {
+      font-weight: 700 !important;
+    }
+
+    /* 4. Remove unwanted menu items on iPad & Desktop: Home, More, Founder's Journey, Find My Order */
+    .menu-list__list-item:has(a[href*="home"]),
+    .menu-list__list-item:has(a[href*="more"]),
+    .menu-list__list-item:has(a[href*="founder"]),
+    .menu-list__list-item:has(a[href*="order"]),
+    .menu-list__link:is([href*="home"], [href*="more"], [href*="founder"], [href*="order"]) {
       display: none !important;
     }
   }
 
-  /* 4. Make Navigation Heading Links Bolder on Desktop & iPad */
-  @media screen and (min-width: 480px) {
-    .menu-list__link,
-    .menu-list__link span,
-    .header-menu a,
-    .overflow-menu a {
-      font-weight: 700 !important;
-    }
-  }
-
-  /* 5. Custom Cart Image replacement (IMG_2324.png) */
+  /* 5. Replace cart icon with your custom image (IMG_2324.png), perfectly sized */
   .header__icon--cart,
   #cart-icon-bubble,
   .header-actions__action--cart {
@@ -1122,6 +1117,7 @@
     justify-content: center !important;
   }
 
+  /* Hide default cart SVG while keeping cart count badge visible and active */
   .header__icon--cart > svg,
   #cart-icon-bubble > svg,
   .header-actions__action--cart > svg,
@@ -1132,6 +1128,7 @@
     visibility: hidden !important;
   }
 
+  /* Search icon and cart icon size harmony */
   .header__icon--search,
   .search-action__button {
     width: 24px !important;
