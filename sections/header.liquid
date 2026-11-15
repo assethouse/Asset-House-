@@ -1062,8 +1062,16 @@
     display: none !important;
   }
 
-  /* 2. iPad & Desktop Right Column: Position Search Bar Next to Cart */
+  /* 2. iPad & Desktop Right Column: Position Search Bar Next to Cart & Remove Left Search */
   @media screen and (min-width: 480px) {
+    /* Hide search icon if it appears on the left/center columns */
+    .header__column--left .search-action,
+    .header__column--center .search-action,
+    .header__column--left .header__icon--search,
+    .header__column--center .header__icon--search {
+      display: none !important;
+    }
+
     .header__column--right {
       display: flex !important;
       align-items: center !important;
@@ -1071,17 +1079,19 @@
       justify-content: flex-end !important;
     }
 
-    /* Ensure search action and header actions sit side by side */
+    /* Ensure search action and header actions sit side by side in right column */
     .search-action {
       display: flex !important;
       align-items: center !important;
       margin: 0 !important;
+      order: 1 !important;
     }
 
     header-actions {
       display: flex !important;
       align-items: center !important;
       margin: 0 !important;
+      order: 2 !important;
     }
 
     /* 3. Make Navigation Headings (Shop, etc.) Bolder */
@@ -1092,11 +1102,12 @@
     }
 
     /* 4. Remove unwanted menu items on iPad & Desktop: Home, More, Founder's Journey, Find My Order */
+    .menu-list__list-item:has(a[href="/"]),
     .menu-list__list-item:has(a[href*="home"]),
     .menu-list__list-item:has(a[href*="more"]),
     .menu-list__list-item:has(a[href*="founder"]),
     .menu-list__list-item:has(a[href*="order"]),
-    .menu-list__link:is([href*="home"], [href*="more"], [href*="founder"], [href*="order"]) {
+    .menu-list__link:is([href="/"], [href*="home"], [href*="more"], [href*="founder"], [href*="order"]) {
       display: none !important;
     }
   }
