@@ -934,40 +934,41 @@
     }
   }
 
-  /* not ideal but we need to duplicate these styles for when touch comes into play
-    We could avoid the duplication using js to set the data-menu-style attribute on small screens instead of using @media queries */
-  #header-component[data-menu-style='drawer'] .header__columns {
-    --header-template-columns: 44px 1fr 44px 44px !important;
-    grid-template-areas: 'leftA center rightA rightB' !important;
-    grid-column: span 3;
-    column-gap: 0 !important;
-    align-items: center !important;
-    padding-block: 0;
-    padding-inline: var(--page-margin);
-
-    .header-logo {
-      grid-area: center !important;
-      justify-self: center !important;
-    }
-
-    .header__icon--menu {
-      grid-area: leftA !important;
-      justify-self: start !important;
-      padding-inline: 0 !important;
-    }
-
-    .search-action {
-      grid-area: rightA !important;
-      display: flex !important;
-      justify-self: center !important;
+  /* Only apply mobile drawer grid override on actual phones up to 749px, preventing iPad/tablet layout issues */
+  @media screen and (max-width: 749px) {
+    #header-component[data-menu-style='drawer'] .header__columns {
+      --header-template-columns: 44px 1fr 44px 44px !important;
+      grid-template-areas: 'leftA center rightA rightB' !important;
+      grid-column: span 3;
+      column-gap: 0 !important;
       align-items: center !important;
-    }
+      padding-block: 0;
+      padding-inline: var(--page-margin);
 
-    header-actions {
-      grid-area: rightB !important;
-      display: flex !important;
-      justify-self: end !important;
-      align-items: center !important;
+      .header-logo {
+        grid-area: center !important;
+        justify-self: center !important;
+      }
+
+      .header__icon--menu {
+        grid-area: leftA !important;
+        justify-self: start !important;
+        padding-inline: 0 !important;
+      }
+
+      .search-action {
+        grid-area: rightA !important;
+        display: flex !important;
+        justify-self: center !important;
+        align-items: center !important;
+      }
+
+      header-actions {
+        grid-area: rightB !important;
+        display: flex !important;
+        justify-self: end !important;
+        align-items: center !important;
+      }
     }
   }
 
@@ -1258,21 +1259,26 @@
     display: none !important;
   }
 
-  /* 2. Desktop Right Column Alignment */
+  /* 2. Desktop & Tablet Right Column Alignment (750px and up) */
   @media screen and (min-width: 750px) {
-    .header__column--right {
+    .header__column--right,
+    header-actions,
+    .search-action {
       display: flex !important;
       align-items: center !important;
       gap: 14px !important;
+    }
+    .header__column--right {
       justify-content: flex-end !important;
     }
   }
 
-  /* 3. Replace cart icon with custom image, matching search bar size */
+  /* 3. Replace cart icon with custom image (IMG_2324.png), matching search bar size */
   .header__icon--cart,
-  #cart-icon-bubble {
+  #cart-icon-bubble,
+  .header-actions__action--cart {
     background-image: url('https://cdn.shopify.com/s/files/1/1032/8109/9078/files/IMG_2324.png?v=1794758146') !important;
-    background-size: 22px 22px !important;
+    background-size: 20px 20px !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
     width: 24px !important;
@@ -1286,10 +1292,13 @@
   /* Hide default cart SVG while keeping cart count badge visible */
   .header__icon--cart > svg,
   #cart-icon-bubble > svg,
+  .header-actions__action--cart > svg,
   .header__icon--cart .svg-wrapper,
-  #cart-icon-bubble .svg-wrapper {
+  #cart-icon-bubble .svg-wrapper,
+  .header-actions__action--cart .svg-wrapper {
     opacity: 0 !important;
     visibility: hidden !important;
+    display: none !important;
   }
 
   /* Search icon and cart icon size harmony */
