@@ -71,7 +71,7 @@
 
     </div>
 
-    <!-- Middle Security & Payment Trust Bar -->
+    <!-- Middle Security & Payment Trust Bar (Side-by-side row) -->
     <div class="vr-footer-trust-bar">
       <div class="vr-trust-left">
         <div class="vr-secure-checkout">
@@ -263,7 +263,7 @@
     padding: 0 !important;
   }
 
-  /* Things underneath (The £1000 guarantee, etc.) styled Light Grey */
+  /* Sub-links styled Light Grey */
   #shopify-section-{{ section.id }} .vr-footer-links li a {
     color: #9ca3af !important;
     text-decoration: none !important;
@@ -277,12 +277,12 @@
     color: #ffffff !important;
   }
 
-  /* Trust Bar */
+  /* Trust Bar - Forced Side-by-Side (No wrapping) */
   #shopify-section-{{ section.id }} .vr-footer-trust-bar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     gap: 20px !important;
     padding: 24px 0 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -294,12 +294,15 @@
     align-items: center !important;
     flex-wrap: wrap !important;
     gap: 24px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-secure-checkout {
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
+    flex-shrink: 0 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-secure-text {
@@ -321,6 +324,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    flex-shrink: 0 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-crest-shield {
@@ -350,7 +354,8 @@
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   /* EXTREMELY BOLD Payment Pills & Text */
