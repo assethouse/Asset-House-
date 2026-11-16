@@ -11,8 +11,8 @@
         </div>
         <p class="vr-footer-slogan">From Broke to Biggest Reseller in the UK.</p>
         
-        <!-- Rating side-by-side (Text on left, Stars on right) -->
-        <div class="vr-footer-rating-row">
+        <!-- Rating Row: Text to the left of stars -->
+        <div class="vr-footer-rating-inline">
           <span class="vr-footer-rating-text">4.8 out of 5 from 540 buyer reviews</span>
           <div class="vr-footer-stars">
             <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -20,7 +20,7 @@
         </div>
 
         <a href="https://www.tiktok.com/@luckkyedit" target="_blank" rel="noopener" class="vr-footer-tiktok-link">
-          <svg class="vr-tiktok-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+          <svg class="vr-tiktok-icon" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
           <span class="vr-tiktok-username">@luckkyedit</span>
         </a>
       </div>
@@ -75,13 +75,14 @@
     <div class="vr-footer-trust-bar">
       <div class="vr-trust-left">
         <div class="vr-secure-checkout">
-          <svg class="vr-lock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3b82f6" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <svg class="vr-lock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#3b82f6" stroke-width="3"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
           <span class="vr-secure-text">Secure checkout</span>
         </div>
 
         <div class="vr-guarantee-badge-wrap">
+          <!-- Exact Upload 1 Outlined Dark Blue Crest with Dark Blue Checkmark -->
           <div class="vr-crest-badge">
-            <svg class="vr-crest-outline" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#1b3a8b" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            <svg class="vr-crest-shield" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#1b3a8b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             <span class="vr-crest-check">✓</span>
           </div>
           <span class="vr-guarantee-text">Spend £50: We Guarantee you’ll earn £1000 in 30 days.</span>
@@ -161,11 +162,11 @@
     gap: 12px !important;
   }
 
-  /* 59% Bigger Logo Height (~50px) Aligned with Headings */
+  /* 55% Bigger Logo Height (~50px) Aligned with Headings */
   #shopify-section-{{ section.id }} .vr-footer-logo-wrap {
     height: 50px !important;
     display: flex !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     margin-bottom: 2px !important;
   }
 
@@ -177,19 +178,18 @@
 
   #shopify-section-{{ section.id }} .vr-footer-slogan {
     color: #9ca3af !important;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
-    margin: 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    margin: 0 0 6px 0 !important;
     line-height: 1.4 !important;
   }
 
-  /* Rating Row (Text on left, Stars on right) */
-  #shopify-section-{{ section.id }} .vr-footer-rating-row {
+  /* Rating Inline: Text to the left of stars */
+  #shopify-section-{{ section.id }} .vr-footer-rating-inline {
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
-    margin: 4px 0 !important;
-    flex-wrap: wrap !important;
+    margin-bottom: 8px !important;
   }
 
   #shopify-section-{{ section.id }} .vr-footer-stars {
@@ -203,24 +203,25 @@
   #shopify-section-{{ section.id }} .vr-footer-rating-text {
     color: #9ca3af !important;
     font-size: 0.85rem !important;
+    font-weight: 700 !important;
     margin: 0 !important;
-    font-weight: 500 !important;
   }
 
-  /* Bolder TikTok Link & Username */
+  /* Extra Bolder TikTok Link & Username */
   #shopify-section-{{ section.id }} .vr-footer-tiktok-link {
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
     color: #ffffff !important;
     text-decoration: none !important;
-    font-size: 0.95rem !important;
+    font-size: 1rem !important;
     font-weight: 900 !important;
     margin-top: 4px !important;
   }
 
   #shopify-section-{{ section.id }} .vr-tiktok-icon {
     stroke: #ffffff !important;
+    stroke-width: 3 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-tiktok-username {
@@ -234,14 +235,14 @@
     gap: 14px !important;
   }
 
-  /* 50% More Bolder Column Headings */
+  /* Way Way Bolder Column Headings (+50% thicker) */
   #shopify-section-{{ section.id }} .vr-footer-heading {
     color: #ffffff !important;
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
     font-weight: 900 !important;
     letter-spacing: 2px !important;
     text-transform: uppercase !important;
-    margin: 0 !important;
+    margin: 0 0 4px 0 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-footer-links {
@@ -265,7 +266,7 @@
     color: #9ca3af !important;
     text-decoration: none !important;
     font-size: 0.88rem !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;
     transition: color 0.2s ease !important;
   }
 
@@ -273,6 +274,7 @@
     color: #ffffff !important;
   }
 
+  /* Trust Bar (No Bottom Border Line) */
   #shopify-section-{{ section.id }} .vr-footer-trust-bar {
     display: flex !important;
     justify-content: space-between !important;
@@ -299,45 +301,47 @@
 
   #shopify-section-{{ section.id }} .vr-secure-text {
     color: #ffffff !important;
-    font-size: 0.88rem !important;
-    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    font-weight: 800 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-guarantee-badge-wrap {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 10px !important;
   }
 
-  /* Exact Upload 1 Outlined Crest Badge */
+  /* Exact Upload 1 Outlined Dark Blue Crest with Dark Blue Checkmark */
   #shopify-section-{{ section.id }} .vr-crest-badge {
     position: relative !important;
-    width: 22px !important;
-    height: 22px !important;
+    width: 24px !important;
+    height: 24px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
 
-  #shopify-section-{{ section.id }} .vr-crest-outline {
+  #shopify-section-{{ section.id }} .vr-crest-shield {
     position: absolute !important;
+    width: 24px !important;
+    height: 24px !important;
     stroke: #1b3a8b !important;
+    stroke-width: 3 !important;
     fill: none !important;
-    width: 20px !important;
-    height: 20px !important;
   }
 
   #shopify-section-{{ section.id }} .vr-crest-check {
     color: #1b3a8b !important;
-    font-size: 11px !important;
+    font-size: 12px !important;
     font-weight: 900 !important;
     z-index: 2 !important;
+    line-height: 1 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-guarantee-text {
     color: #3b82f6 !important;
-    font-size: 0.88rem !important;
-    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    font-weight: 800 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-trust-right {
@@ -353,31 +357,31 @@
     color: #000000 !important;
     font-size: 0.78rem !important;
     font-weight: 900 !important;
-    padding: 5px 12px !important;
+    padding: 6px 14px !important;
     border-radius: 6px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 28px !important;
+    height: 30px !important;
     box-sizing: border-box !important;
-    letter-spacing: 0.3px !important;
+    letter-spacing: 0.5px !important;
   }
 
   #shopify-section-{{ section.id }} .vr-pill-visa {
-    color: #2563eb !important;
+    color: #1d4ed8 !important;
     font-weight: 900 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-pill-mastercard {
     background-color: #ffffff !important;
-    width: 42px !important;
+    width: 44px !important;
     padding: 0 !important;
   }
 
   #shopify-section-{{ section.id }} .mc-circles {
     position: relative !important;
-    width: 24px !important;
-    height: 14px !important;
+    width: 26px !important;
+    height: 15px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -386,25 +390,25 @@
   #shopify-section-{{ section.id }} .mc-red {
     position: absolute !important;
     left: 0 !important;
-    width: 14px !important;
-    height: 14px !important;
+    width: 15px !important;
+    height: 15px !important;
     background-color: #eb001b !important;
     border-radius: 50% !important;
-    opacity: 0.85 !important;
+    opacity: 0.9 !important;
   }
 
   #shopify-section-{{ section.id }} .mc-orange {
     position: absolute !important;
     right: 0 !important;
-    width: 14px !important;
-    height: 14px !important;
+    width: 15px !important;
+    height: 15px !important;
     background-color: #f79e1b !important;
     border-radius: 50% !important;
-    opacity: 0.85 !important;
+    opacity: 0.9 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-pill-amex {
-    background-color: #2563eb !important;
+    background-color: #1d4ed8 !important;
     color: #ffffff !important;
     font-weight: 900 !important;
   }
@@ -425,13 +429,13 @@
     font-size: 0.78rem !important;
     line-height: 1.5 !important;
     margin: 0 !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     text-align: center !important;
   }
 
   #shopify-section-{{ section.id }} .vr-copyright {
     color: #8e8e93 !important;
-    font-weight: 500 !important;
+    font-weight: 700 !important;
     margin-top: 4px !important;
     text-align: center !important;
   }
