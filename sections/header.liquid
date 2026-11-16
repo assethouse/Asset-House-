@@ -1,4 +1,4 @@
-{% liquid
+{%- liquid
   # Removed drawer_search entirely to permanently eliminate the duplicate search bar issue
   assign order = 'logo,menu,localization,search,actions'
 
@@ -462,6 +462,18 @@
   type="module"
 ></script>
 
+<!-- JS Script to Ensure Unwanted Links Are Hidden Instantly -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.menu-list__item, .menu-list__link').forEach(el => {
+      const text = el.textContent.trim().toLowerCase();
+      if (text === 'home' || text === 'more' || text === "founder's journey" || text === 'find my order') {
+        el.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 {% stylesheet %}
   body {
     --header-height: 60px;
@@ -683,6 +695,82 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+
+  /* ==========================================
+     SEARCH POPUP / MODAL OVERLAY (UPLOAD 1 STYLE)
+     ========================================== */
+  
+  predictive-search, 
+  .search-modal, 
+  .search-modal__content, 
+  [role="dialog"].search-modal {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .search-modal__form, 
+  predictive-search form, 
+  .search__input-field-wrapper {
+    background-color: #000000 !important;
+    border-bottom: 1px solid #333333 !important;
+    padding: 20px 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .search-modal .icon-search, 
+  predictive-search .icon-search,
+  .search-modal__form svg {
+    color: #8e8e93 !important;
+    stroke: #8e8e93 !important;
+  }
+
+  .search-modal__input::-webkit-input-placeholder,
+  predictive-search input::-webkit-input-placeholder,
+  .search__input::-webkit-input-placeholder {
+    color: #8e8e93 !important;
+    font-weight: 700 !important;
+  }
+
+  .search-modal__input,
+  predictive-search input,
+  .search__input {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+  }
+
+  .search-modal__close-button,
+  .search-modal__close,
+  predictive-search .search-modal__close-button {
+    color: #8e8e93 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #8e8e93 !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  .search-modal__results, 
+  predictive-search .predictive-search__results-groups-wrapper {
+    border-top: 1px solid #2c2c2e !important;
+    background-color: #000000 !important;
+  }
+
+  .predictive-search__heading,
+  .search-modal__heading,
+  .search__heading {
+    color: #ffffff !important;
+    font-size: 0.9rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    padding: 16px 24px 8px 24px !important;
+    margin: 0 !important;
   }
 {% endstylesheet %}
 
