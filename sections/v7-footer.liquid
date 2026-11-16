@@ -80,9 +80,9 @@
         </div>
 
         <div class="vr-guarantee-badge-wrap">
-          <!-- Exact Upload 1 Outlined Dark Blue Crest with Dark Blue Checkmark -->
+          <!-- Exact Outlined Dark Blue Crest with Dark Blue Checkmark -->
           <div class="vr-crest-badge">
-            <svg class="vr-crest-shield" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#1b3a8b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <svg class="vr-crest-shield" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1b3a8b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             <span class="vr-crest-check">✓</span>
           </div>
           <span class="vr-guarantee-text">Spend £50: We Guarantee you’ll earn £1000 in 30 days.</span>
@@ -162,7 +162,7 @@
     gap: 12px !important;
   }
 
-  /* 55% Bigger Logo Height (~50px) Aligned with Headings */
+  /* Logo Height & Alignment */
   #shopify-section-{{ section.id }} .vr-footer-logo-wrap {
     height: 50px !important;
     display: flex !important;
@@ -235,14 +235,15 @@
     gap: 14px !important;
   }
 
-  /* Way Way Bolder Column Headings (+50% thicker) */
+  /* EXTREMELY BOLD Column Headings */
   #shopify-section-{{ section.id }} .vr-footer-heading {
     color: #ffffff !important;
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
     font-weight: 900 !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 2.5px !important;
     text-transform: uppercase !important;
-    margin: 0 0 4px 0 !important;
+    margin: 0 0 6px 0 !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   #shopify-section-{{ section.id }} .vr-footer-links {
@@ -263,18 +264,19 @@
   }
 
   #shopify-section-{{ section.id }} .vr-footer-links li a {
-    color: #9ca3af !important;
+    color: #c7c7cc !important;
     text-decoration: none !important;
-    font-size: 0.88rem !important;
-    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
     transition: color 0.2s ease !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   #shopify-section-{{ section.id }} .vr-footer-links li a:hover {
     color: #ffffff !important;
   }
 
-  /* Trust Bar (No Bottom Border Line) */
+  /* Trust Bar */
   #shopify-section-{{ section.id }} .vr-footer-trust-bar {
     display: flex !important;
     justify-content: space-between !important;
@@ -311,7 +313,7 @@
     gap: 10px !important;
   }
 
-  /* Exact Upload 1 Outlined Dark Blue Crest with Dark Blue Checkmark */
+  /* Exact Outlined Dark Blue Crest with Dark Blue Checkmark */
   #shopify-section-{{ section.id }} .vr-crest-badge {
     position: relative !important;
     width: 24px !important;
@@ -326,7 +328,7 @@
     width: 24px !important;
     height: 24px !important;
     stroke: #1b3a8b !important;
-    stroke-width: 3 !important;
+    stroke-width: 3.5 !important;
     fill: none !important;
   }
 
@@ -351,20 +353,21 @@
     flex-wrap: wrap !important;
   }
 
-  /* 30% Bolder Payment Pills & Text */
+  /* EXTREMELY BOLD Payment Pills & Text */
   #shopify-section-{{ section.id }} .vr-payment-pill {
     background-color: #ffffff !important;
     color: #000000 !important;
-    font-size: 0.78rem !important;
+    font-size: 0.85rem !important;
     font-weight: 900 !important;
     padding: 6px 14px !important;
     border-radius: 6px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 30px !important;
+    height: 32px !important;
     box-sizing: border-box !important;
     letter-spacing: 0.5px !important;
+    -webkit-font-smoothing: antialiased !important;
   }
 
   #shopify-section-{{ section.id }} .vr-pill-visa {
@@ -413,7 +416,7 @@
     font-weight: 900 !important;
   }
 
-  /* Strictly Centered Disclaimers & Copyright */
+  /* Centered Disclaimers & Copyright */
   #shopify-section-{{ section.id }} .vr-footer-disclaimer {
     display: flex !important;
     flex-direction: column !important;
