@@ -9,7 +9,7 @@
         <div class="vr-footer-logo-wrap">
           <img src="https://cdn.shopify.com/s/files/1/1032/8109/9078/files/24F59A16-3CF9-420B-B649-5951A0F9670A.png?v=1794700883" alt="V7 Supply" class="vr-footer-logo">
         </div>
-        <p class="vr-footer-slogan">From Broke to Biggest Reseller in the UK.</p>
+        <p class="vr-footer-slogan">Turning Everyday Resellers Into Six-Figure Earners.</p>
         
         <!-- Rating Row: Text to the left of stars -->
         <div class="vr-footer-rating-inline">
@@ -27,7 +27,7 @@
 
       <!-- Column 2: SHOP -->
       <div class="vr-footer-col">
-        <h3 class="vr-footer-heading" style="font-weight: 900 !important;">SHOP</h3>
+        <h3 class="vr-footer-heading">SHOP</h3>
         <ul class="vr-footer-links">
           <li><a href="/pages/1000-guarantee">The £1,000 guarantee</a></li>
           <li><a href="/collections/all">All products</a></li>
@@ -39,7 +39,7 @@
 
       <!-- Column 3: EXPLORE -->
       <div class="vr-footer-col">
-        <h3 class="vr-footer-heading" style="font-weight: 900 !important;">EXPLORE</h3>
+        <h3 class="vr-footer-heading">EXPLORE</h3>
         <ul class="vr-footer-links">
           <li><a href="/pages/how-it-works">How it works</a></li>
           <li><a href="/pages/founders-journey">Founders journey</a></li>
@@ -48,7 +48,7 @@
 
       <!-- Column 4: SUPPORT -->
       <div class="vr-footer-col">
-        <h3 class="vr-footer-heading" style="font-weight: 900 !important;">SUPPORT</h3>
+        <h3 class="vr-footer-heading">SUPPORT</h3>
         <ul class="vr-footer-links">
           <li><a href="/pages/faq">FAQ</a></li>
           <li><a href="/pages/contact">Contact us</a></li>
@@ -59,7 +59,7 @@
 
       <!-- Column 5: LEGAL -->
       <div class="vr-footer-col">
-        <h3 class="vr-footer-heading" style="font-weight: 900 !important;">LEGAL</h3>
+        <h3 class="vr-footer-heading">LEGAL</h3>
         <ul class="vr-footer-links">
           <li><a href="/policies/privacy-policy">Privacy policy</a></li>
           <li><a href="/policies/terms-of-service">Terms of service</a></li>
@@ -89,16 +89,16 @@
       </div>
 
       <div class="vr-trust-right">
-        <div class="vr-payment-pill vr-pill-apple" style="font-weight: 900 !important;">Apple Pay</div>
-        <div class="vr-payment-pill vr-pill-google" style="font-weight: 900 !important;">G Pay</div>
-        <div class="vr-payment-pill vr-pill-visa" style="font-weight: 900 !important;">VISA</div>
+        <div class="vr-payment-pill vr-pill-apple">Apple Pay</div>
+        <div class="vr-payment-pill vr-pill-google">G Pay</div>
+        <div class="vr-payment-pill vr-pill-visa">VISA</div>
         <div class="vr-payment-pill vr-pill-mastercard">
           <div class="mc-circles">
             <span class="mc-red"></span>
             <span class="mc-orange"></span>
           </div>
         </div>
-        <div class="vr-payment-pill vr-pill-amex" style="font-weight: 900 !important;">AMEX</div>
+        <div class="vr-payment-pill vr-pill-amex">AMEX</div>
       </div>
     </div>
 
@@ -159,17 +159,20 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 12px !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
+  /* Logo Increased in Height (65px) and aligned level with headings */
   #shopify-section-{{ section.id }} .vr-footer-logo-wrap {
-    height: 50px !important;
+    height: 65px !important;
     display: flex !important;
-    align-items: center !important;
-    margin-bottom: 2px !important;
+    align-items: flex-start !important;
+    margin-bottom: 4px !important;
   }
 
   #shopify-section-{{ section.id }} .vr-footer-logo {
-    height: 50px !important;
+    height: 65px !important;
     width: auto !important;
     object-fit: contain !important;
   }
@@ -178,7 +181,7 @@
     color: #9ca3af !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
-    margin: 0 0 6px 0 !important;
+    margin: 0 0 8px 0 !important;
     line-height: 1.4 !important;
   }
 
@@ -231,15 +234,15 @@
     gap: 14px !important;
   }
 
-  /* FORCED ULTRA-BOLD HEADINGS (SHOP, EXPLORE, SUPPORT, LEGAL) */
+  /* WAY MORE BOLD HEADINGS (SHOP, EXPLORE, SUPPORT, LEGAL) */
   #shopify-section-{{ section.id }} .vr-footer-heading {
     color: #ffffff !important;
-    font-size: 1.15rem !important;
+    font-size: 1.25rem !important;
     font-weight: 900 !important;
-    letter-spacing: 2.5px !important;
+    letter-spacing: 3px !important;
     text-transform: uppercase !important;
     margin: 0 0 6px 0 !important;
-    -webkit-text-stroke: 0.4px #ffffff !important;
+    -webkit-text-stroke: 0.8px #ffffff !important;
     -webkit-font-smoothing: antialiased !important;
   }
 
@@ -260,11 +263,12 @@
     padding: 0 !important;
   }
 
+  /* Things underneath (The £1000 guarantee, etc.) styled Light Grey */
   #shopify-section-{{ section.id }} .vr-footer-links li a {
-    color: #c7c7cc !important;
+    color: #9ca3af !important;
     text-decoration: none !important;
     font-size: 0.92rem !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     transition: color 0.2s ease !important;
     -webkit-font-smoothing: antialiased !important;
   }
@@ -273,6 +277,7 @@
     color: #ffffff !important;
   }
 
+  /* Trust Bar */
   #shopify-section-{{ section.id }} .vr-footer-trust-bar {
     display: flex !important;
     justify-content: space-between !important;
@@ -344,44 +349,44 @@
   #shopify-section-{{ section.id }} .vr-trust-right {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 10px !important;
     flex-wrap: wrap !important;
   }
 
-  /* FORCED ULTRA-BOLD PAYMENT PILLS (Apple Pay, G Pay, VISA, AMEX) */
+  /* EXTREMELY BOLD Payment Pills & Text */
   #shopify-section-{{ section.id }} .vr-payment-pill {
     background-color: #ffffff !important;
     color: #000000 !important;
-    font-size: 0.88rem !important;
+    font-size: 0.9rem !important;
     font-weight: 900 !important;
-    padding: 6px 14px !important;
-    border-radius: 6px !important;
+    padding: 7px 16px !important;
+    border-radius: 8px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    height: 32px !important;
+    height: 34px !important;
     box-sizing: border-box !important;
-    letter-spacing: 0.5px !important;
-    -webkit-text-stroke: 0.3px #000000 !important;
+    letter-spacing: 0.8px !important;
+    -webkit-text-stroke: 0.5px #000000 !important;
     -webkit-font-smoothing: antialiased !important;
   }
 
   #shopify-section-{{ section.id }} .vr-pill-visa {
     color: #1d4ed8 !important;
     font-weight: 900 !important;
-    -webkit-text-stroke: 0.3px #1d4ed8 !important;
+    -webkit-text-stroke: 0.5px #1d4ed8 !important;
   }
 
   #shopify-section-{{ section.id }} .vr-pill-mastercard {
     background-color: #ffffff !important;
-    width: 44px !important;
+    width: 48px !important;
     padding: 0 !important;
   }
 
   #shopify-section-{{ section.id }} .mc-circles {
     position: relative !important;
-    width: 26px !important;
-    height: 15px !important;
+    width: 28px !important;
+    height: 16px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -390,8 +395,8 @@
   #shopify-section-{{ section.id }} .mc-red {
     position: absolute !important;
     left: 0 !important;
-    width: 15px !important;
-    height: 15px !important;
+    width: 16px !important;
+    height: 16px !important;
     background-color: #eb001b !important;
     border-radius: 50% !important;
     opacity: 0.9 !important;
@@ -400,8 +405,8 @@
   #shopify-section-{{ section.id }} .mc-orange {
     position: absolute !important;
     right: 0 !important;
-    width: 15px !important;
-    height: 15px !important;
+    width: 16px !important;
+    height: 16px !important;
     background-color: #f79e1b !important;
     border-radius: 50% !important;
     opacity: 0.9 !important;
@@ -411,7 +416,7 @@
     background-color: #1d4ed8 !important;
     color: #ffffff !important;
     font-weight: 900 !important;
-    -webkit-text-stroke: 0.3px #ffffff !important;
+    -webkit-text-stroke: 0.5px #ffffff !important;
   }
 
   #shopify-section-{{ section.id }} .vr-footer-disclaimer {
